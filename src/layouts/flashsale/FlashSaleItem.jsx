@@ -3,23 +3,22 @@ import { image_url_with_size } from "../../config/apiConfig";
 import { useGetInfoProducts } from "../../utils";
 
 const FlashSaleItem = ({ data }) => {
-  console.log(data);
   const { handleGetDiscount, handleGetPrice, handleGetSold } =
     useGetInfoProducts();
 
   return (
     <div className="flash-sale-item cursor-pointer pb-3 px-3 hover:use-shadow">
       <div className="flex flex-col justify-center gap-y-2">
-        <div className="h-[250px]">
+        <div className="h-[180px]">
           <Image
             src={`${image_url_with_size}${data.poster_path}`}
             rounded="rounded-none"
-            maxHeight="h-[250px]"
+            maxHeight="h-[180px]"
           />
         </div>
         <div className="price discount flex items-center gap-x-2">
           <span className="text-cprice font-bold leading-6">
-            {handleGetPrice(data.vote_average)}
+            {handleGetPrice(data.vote_average, true)}
           </span>
           <span className="leading-4 text-xs border border-cprice rounded-sm text-cprice px-[2px] bg-[#fff0f1]">
             -{handleGetDiscount(data.vote_average)}%
@@ -32,7 +31,7 @@ const FlashSaleItem = ({ data }) => {
             style={{
               width: `${handleGetSold(data.vote_average)}%`,
             }}></div>
-          <span className="w-full text-center text-xs text-white z-50">
+          <span className="w-full text-center text-xs text-white font-medium z-50">
             Đã bán {handleGetSold(data.vote_average)}
           </span>
           <div className="absolute left-1 top-[10%] -translate-y-2/4">

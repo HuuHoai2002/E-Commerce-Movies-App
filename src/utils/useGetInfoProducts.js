@@ -1,17 +1,21 @@
+import { defaultPrice, priceFlashSale } from "../config/products";
+
 const useGetInfoProducts = () => {
-  const handleGetPrice = (e) => {
-    return (e * 23000).toLocaleString("vi", {
+  const handleGetPrice = (data, isFlashSale = false) => {
+    return (
+      data * (isFlashSale ? priceFlashSale : defaultPrice)
+    ).toLocaleString("vi", {
       style: "currency",
       currency: "VND",
     });
   };
 
-  const handleGetDiscount = (e) => {
-    return (e * 5).toFixed();
+  const handleGetDiscount = (data) => {
+    return (data * 4).toFixed();
   };
 
-  const handleGetSold = (e) => {
-    return (e * 8).toFixed();
+  const handleGetSold = (data) => {
+    return (data * 8).toFixed();
   };
 
   return { handleGetPrice, handleGetDiscount, handleGetSold };
