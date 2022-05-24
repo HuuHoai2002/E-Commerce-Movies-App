@@ -27,6 +27,16 @@
   .use-shadow {
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
   }
+  .product-name {
+    font-size: 14px;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
 }
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {

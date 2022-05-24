@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { Header } from "./layouts/header";
 
 const HomePage = React.lazy(() => import("./pages/HomePage"));
+const ProductDetails = React.lazy(() => import("./pages/ProductDetails"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
       <Suspense fallback={<div>Loading ....</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/details/:name/:slug" element={<ProductDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

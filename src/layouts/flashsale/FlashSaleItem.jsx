@@ -1,14 +1,18 @@
+import { Link } from "react-router-dom";
 import { Image } from "../../components/image";
 import { image_url_with_size } from "../../config/apiConfig";
-import { useGetInfoProducts } from "../../hooks";
+import { useGetInfoProducts, useSlugify } from "../../hooks";
 
 const FlashSaleItem = ({ data }) => {
   const { handleGetDiscount, handleGetPrice, handleGetSold } =
     useGetInfoProducts();
 
+  const { handleSlug } = useSlugify();
   return (
     <div className="flash-sale-item cursor-pointer pb-3 px-3 hover:use-shadow">
-      <div className="flex flex-col justify-center gap-y-2">
+      <Link
+        to={`details/${handleSlug(data.title)}/${data.id}`}
+        className="flex flex-col justify-center gap-y-2">
         <div className="h-[180px]">
           <Image
             src={`${image_url_with_size}${data.poster_path}`}
@@ -42,7 +46,7 @@ const FlashSaleItem = ({ data }) => {
             />
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
