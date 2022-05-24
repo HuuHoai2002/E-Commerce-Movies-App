@@ -8,12 +8,11 @@ const ProductItem = ({ data, isTv }) => {
   const { handleGetDiscount, handleGetPrice } = useGetInfoProducts();
   const { handleSlug } = useSlugify();
 
-  console.log(data);
   return (
     <Link
       to={`details/${handleSlug(data.title)}/${data.id}`}
       className="product-item">
-      <div className="p-3 hover:use-shadow cursor-pointer">
+      <div className="p-3 hover:use-shadow cursor-pointer transition-all">
         <div className="flex flex-col gap-y-2">
           <div className="max-h-[300px]">
             <Image
@@ -23,7 +22,7 @@ const ProductItem = ({ data, isTv }) => {
             />
           </div>
           <div className="product-info flex flex-col gap-y-[3px]">
-            <div className="product-name">{data.original_title}</div>
+            <div className="product-name">{data.title}</div>
             <div className="flex items-center justify-between text-xs text-ctext">
               <div>{renderStars(data.vote_average)}</div>
               <div>Đã bán {data.vote_count}</div>

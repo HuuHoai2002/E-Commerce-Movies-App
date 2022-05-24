@@ -1,7 +1,7 @@
 import { useGetHomeImages } from "../../hooks";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
-const { danhchoban, langman, phobien, yeuthich } = useGetHomeImages();
+const { danhchoban, phobien, yeuthich } = useGetHomeImages();
 
 export const homeHeaderContent = [
   {
@@ -19,9 +19,9 @@ export const homeHeaderContent = [
     title: "Yêu thích",
     image: yeuthich,
   },
-  {
-    id: 4,
-    title: "Lãng mạn",
-    image: langman,
-  },
+  // {
+  //   id: 4,
+  //   title: "Lãng mạn",
+  //   image: langman,
+  // },
 ];
