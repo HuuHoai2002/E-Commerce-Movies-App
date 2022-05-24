@@ -1,6 +1,6 @@
 import { Image } from "../../components/image";
 import { image_url_with_size } from "../../config/apiConfig";
-import { useGetInfoProducts } from "../../utils";
+import { useGetInfoProducts } from "../../hooks";
 
 const FlashSaleItem = ({ data }) => {
   const { handleGetDiscount, handleGetPrice, handleGetSold } =

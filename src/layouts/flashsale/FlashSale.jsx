@@ -13,8 +13,12 @@ const FlashSale = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getMovies(categories.POPULAR, 2);
-      response && setMovies(response.results);
+      try {
+        const response = await getMovies(categories.POPULAR, 2);
+        response && setMovies(response.results);
+      } catch (error) {
+        console.log("Error: ", error);
+      }
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
