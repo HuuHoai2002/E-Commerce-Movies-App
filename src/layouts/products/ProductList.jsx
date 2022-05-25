@@ -2,7 +2,7 @@ import { Grid } from "../components/grid";
 import { Row } from "../components/row";
 import ProductItemSmall from "./ProductItemSmall";
 
-const ProductList = ({ isRow = true, movies, col }) => {
+const ProductList = ({ isRow = false, movies, col }) => {
   return (
     <div className="list-product">
       {isRow ? (

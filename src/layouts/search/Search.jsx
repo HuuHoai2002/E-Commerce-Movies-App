@@ -1,8 +1,5 @@
 import lodash from "lodash";
 import { useCallback, useEffect, useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { v4 as uuidv4 } from "uuid";
-// import { addSearchHistory } from "../../actions/search";
 import { Button } from "../../components/button";
 import { ISearch } from "../../components/icons";
 import { SearchModal } from "../../components/searchModal";
@@ -11,32 +8,20 @@ import { useServiceSearch } from "../../services";
 import SearchContent from "./SearchContent";
 
 const Search = () => {
-  //show modal
   const { show, setShow, nodeRef } = useClickOutSide("div");
 
-  //input value
   const [values, setValues] = useState("");
+
   const handleSetValues = lodash.debounce((e) => {
     const inputValues = e.target.value;
     if (!inputValues.startsWith(" ")) setValues(inputValues);
   }, 500);
+
   const handleClickInput = useCallback(() => {
     setShow(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // redux
-  // const dispatch = useDispatch();
-  // const handleAddHistory = () => {
-  //   dispatch(
-  //     addSearchHistory({
-  //       content: values && values,
-  //       id: uuidv4(),
-  //     })
-  //   );
-  // };
-
-  //search
   const { searchKeywords } = useServiceSearch();
   const [movies, setMovies] = useState([]);
 

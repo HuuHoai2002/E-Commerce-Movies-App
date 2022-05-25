@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IArrowsNext, IArrowsPrev } from "../../components/icons";
-import { categories } from "../../config/apiConfig";
+import { categories } from "../../config/api/apiConfig";
 import { useServiceProducts } from "../../services";
 import FlashSaleItem from "./FlashSaleItem";
 

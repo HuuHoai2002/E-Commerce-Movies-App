@@ -12,8 +12,8 @@ const SearchModalStyles = styled.div`
   min-height: ${(props) => props.minH || "450px"};
   background-color: ${(props) => props.bg || "white"};
   border-top: 1px solid rgb(225, 225, 225);
-  border-bottom-right-radius: 2px;
-  border-bottom-left-radius: 2px;
+  /* border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px; */
   overflow: auto;
 
   &::-webkit-scrollbar {

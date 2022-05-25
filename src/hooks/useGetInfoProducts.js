@@ -1,4 +1,4 @@
-import { defaultPrice, priceFlashSale } from "../config/products";
+import { defaultPrice, priceFlashSale } from "../config/products/products";
 
 const useGetInfoProducts = () => {
   const handleGetPrice = (data, isFlashSale = false) => {

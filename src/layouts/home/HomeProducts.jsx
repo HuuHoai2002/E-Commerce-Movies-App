@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "../../components/button";
 import { Heading } from "../../components/heading";
-import { categories } from "../../config/apiConfig";
+import { categories } from "../../config/api/apiConfig";
 import { useServiceProducts } from "../../services";
 import { Grid } from "../components/grid";
 import { ProductItem } from "../products";

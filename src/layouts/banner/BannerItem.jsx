@@ -1,12 +1,17 @@
 import { forwardRef } from "react";
 import { IArrowsNext, IArrowsPrev } from "../../components/icons";
 import { Image } from "../../components/image";
-import { image_url_original } from "../../config/apiConfig";
+import { image_url_original } from "../../config/api/apiConfig";
+import { useSlugify } from "../../hooks";
+import { Href } from "../components/href";
 
 const BannerItem = forwardRef(({ data }, ref) => {
+  const { handleSlug } = useSlugify();
   return (
     <div className="w-full rounded-md relative group cursor-pointer">
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.2)] to-[rgba(0,0,0,0.5)]"></div>
+      <Href to={`details/${handleSlug(data.title)}/${data.id}`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.2)] to-[rgba(0,0,0,0.5)]"></div>
+      </Href>
       <div className="flex items-center gap-x-3">
         <span className="w-full max-h-[450px]">
           <Image

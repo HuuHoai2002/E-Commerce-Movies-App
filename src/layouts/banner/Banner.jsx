@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Autoplay, EffectFade, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { categories } from "../../config/apiConfig";
+import { categories } from "../../config/api/apiConfig";
 import { useServiceProducts } from "../../services";
 import BannerItem from "./BannerItem";
 
