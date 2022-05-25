@@ -56,9 +56,19 @@
 .animation-flashsale {
   animation: 0.8s linear 0s infinite normal none running spin;
 }
+
 @keyframes spin {
   50% {
     opacity: 0.3;
     transform: scale(1.3);
   }
+}
+
+@keyframes spin360 {
+  from {
+    transform: rotate(360deg);
+  }
+}
+.animation-spin {
+  animation: spin360 1s linear infinite;
 }

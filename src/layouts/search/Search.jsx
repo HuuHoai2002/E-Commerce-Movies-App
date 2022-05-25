@@ -24,15 +24,17 @@ const Search = () => {
 
   const { searchKeywords } = useServiceSearch();
   const [movies, setMovies] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await searchKeywords({
           query: values,
           language: "vi",
         });
         response && setMovies(response.results);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -61,7 +63,7 @@ const Search = () => {
           <div className="search-modal">
             {show && (
               <SearchModal top="43px" show={show}>
-                <SearchContent movies={movies} />
+                <SearchContent movies={movies} loading={loading} />
               </SearchModal>
             )}
           </div>
