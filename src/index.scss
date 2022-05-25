@@ -37,6 +37,14 @@
     text-overflow: ellipsis;
     word-break: break-word;
   }
+  .use-truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
 }
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {

@@ -1,32 +1,64 @@
 import lodash from "lodash";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-import { addSearchHistory } from "../../actions/search";
+import { useCallback, useEffect, useState } from "react";
+// import { useDispatch } from "react-redux";
+// import { v4 as uuidv4 } from "uuid";
+// import { addSearchHistory } from "../../actions/search";
 import { Button } from "../../components/button";
 import { ISearch } from "../../components/icons";
-import SearchModal from "../../components/searchModal/SearchModal";
+import { SearchModal } from "../../components/searchModal";
 import { useClickOutSide } from "../../hooks";
+import { useServiceSearch } from "../../services";
 import SearchContent from "./SearchContent";
 
 const Search = () => {
   //show modal
-  const { show, setShow, nodeRef } = useClickOutSide();
+  const { show, setShow, nodeRef } = useClickOutSide("div");
+
   //input value
   const [values, setValues] = useState("");
   const handleSetValues = lodash.debounce((e) => {
-    setValues(e.target.value);
+    const inputValues = e.target.value;
+    if (!inputValues.startsWith(" ")) setValues(inputValues);
   }, 500);
+  const handleClickInput = useCallback(() => {
+    setShow(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // redux
-  const dispatch = useDispatch();
-  const handleAddHistory = () => {
-    dispatch(
-      addSearchHistory({
-        content: values,
-        id: uuidv4(),
-      })
-    );
-  };
+  // const dispatch = useDispatch();
+  // const handleAddHistory = () => {
+  //   dispatch(
+  //     addSearchHistory({
+  //       content: values && values,
+  //       id: uuidv4(),
+  //     })
+  //   );
+  // };
+
+  //search
+  const { searchKeywords } = useServiceSearch();
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await searchKeywords({
+          query: values,
+          language: "vi",
+        });
+        response && setMovies(response.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (values) {
+      fetchData();
+    } else {
+      setMovies([]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values]);
   return (
     <div className="w-full flex items-center" ref={nodeRef}>
       <div className="w-full flex items-center gap-x-2 relative">
@@ -38,18 +70,18 @@ const Search = () => {
               "Tìm bộ phim, diễn viên, hãng sản xuất hay danh mục bạn mong muốn..."
             }
             spellCheck={false}
-            onClick={() => setShow(true)}
+            onClick={handleClickInput}
             onChange={handleSetValues}
           />
           <div className="search-modal">
             {show && (
               <SearchModal top="43px" show={show}>
-                <SearchContent />
+                <SearchContent movies={movies} />
               </SearchModal>
             )}
           </div>
         </div>
-        <Button title="Tìm Kiếm" activeHover={true} onClick={handleAddHistory}>
+        <Button title="Tìm Kiếm" activeHover={true}>
           <ISearch />
         </Button>
       </div>

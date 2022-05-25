@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { Overlay } from "../overlay";
 
@@ -13,6 +14,20 @@ const SearchModalStyles = styled.div`
   border-top: 1px solid rgb(225, 225, 225);
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 2px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f5f5fa;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #bcc0c4;
+    border-radius: 6px;
+  }
 `;
 
 const SearchModal = ({ top, minW, minH, bg, show, children }) => {
@@ -28,4 +43,4 @@ const SearchModal = ({ top, minW, minH, bg, show, children }) => {
   );
 };
 
-export default SearchModal;
+export default React.memo(SearchModal);

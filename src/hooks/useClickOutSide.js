@@ -9,6 +9,8 @@ export default function useClickOutSide(dom = "button") {
       // Kiểm tra xem vừa ấn nó có thuộc về cái nodeRef hay không và nodeRef không phải là cái dom
       if (nodeRef.current && !nodeRef.current.contains(event.target)) {
         setShow(false);
+      } else {
+        setShow(true);
       }
     };
     document.addEventListener("click", handleClickOutSide);
@@ -16,7 +18,7 @@ export default function useClickOutSide(dom = "button") {
     return () => {
       document.removeEventListener("click", handleClickOutSide);
     };
-  }, [dom]);
+  }, []);
 
   return {
     show,
