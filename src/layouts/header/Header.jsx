@@ -5,7 +5,7 @@ import { User } from "../user";
 
 const Header = () => {
   return (
-    <div className="w-full h-[100px] flex items-center justify-between bg-cblue px-[60px] py-3">
+    <div className="w-full h-[100px] flex items-center justify-between bg-cblue px-[60px] py-3 relative z-[9999]">
       <Link to="/">
         <img
           src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png"

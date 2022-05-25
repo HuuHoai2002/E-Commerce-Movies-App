@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply mx-auto min-h-screen max-w-[1400px];
+    @apply mx-auto min-h-screen max-w-[1400px] bg-cbg;
   }
   html {
     font-family: "Noto Sans", sans-serif;

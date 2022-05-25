@@ -36,7 +36,7 @@ const HomeProducts = () => {
         setLoading(true);
         const response = await getMovies(Categories[category], page);
         page !== 1
-          ? setMovies((prev) => [...prev, ...response.results])
+          ? setMovies((moviesPrev) => [...moviesPrev, ...response.results])
           : setMovies(response.results);
         setLoading(false);
       } catch (error) {
@@ -66,8 +66,7 @@ const HomeProducts = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white min-h-screen">
-          {/* <Scroll deps={category}/> */}
+        <div className="bg-white min-h-screen relative">
           <Grid col={5}>
             {movies &&
               movies.map((item) => <ProductItem data={item} key={item.id} />)}
