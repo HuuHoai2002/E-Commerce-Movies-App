@@ -12,6 +12,7 @@ module.exports = {
         cblue: "#1A94FF",
         cyellow: "#fdd835",
         cbg: "#F5F5FA",
+        cheading: "#242421",
       },
     },
   },

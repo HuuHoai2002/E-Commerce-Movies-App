@@ -21,7 +21,7 @@ const FlashSaleItem = ({ data }) => {
           </div>
           <div className="price discount flex items-center gap-x-2">
             <span className="text-cprice font-bold leading-6">
-              {handleGetPrice(data.vote_average, true)}
+              {handleGetPrice(data.vote_average)}
             </span>
             <span className="leading-4 text-xs border border-cprice rounded-sm text-cprice px-[2px] bg-[#fff0f1]">
               -{handleGetDiscount(data.vote_average)}%
