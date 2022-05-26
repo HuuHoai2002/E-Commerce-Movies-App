@@ -1,5 +1,5 @@
 import lodash from "lodash";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "../../components/button";
 import { ISearch } from "../../components/icons";
 import { SearchModal } from "../../components/searchModal";
@@ -11,7 +11,7 @@ const Search = () => {
   const { show, setShow, nodeRef } = useClickOutSide("div");
 
   const [values, setValues] = useState("");
-
+  const inputRef = useRef();
   const handleSetValues = lodash.debounce((e) => {
     const inputValues = e.target.value;
     if (!inputValues.startsWith(" ")) setValues(inputValues);
@@ -59,6 +59,7 @@ const Search = () => {
             spellCheck={false}
             onClick={handleClickInput}
             onChange={handleSetValues}
+            ref={inputRef}
           />
           <div className="search-modal">
             {show && (
@@ -68,7 +69,12 @@ const Search = () => {
             )}
           </div>
         </div>
-        <Button title="Tìm Kiếm" activeHover={true}>
+        <Button
+          title="Tìm Kiếm"
+          activeHover={true}
+          onClick={() => {
+            inputRef.current.focus();
+          }}>
           <ISearch />
         </Button>
       </div>
