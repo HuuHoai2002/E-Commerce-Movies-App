@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "../../components/button";
 import { Heading } from "../../components/heading";
-import { categories } from "../../config/api/apiConfig";
+import { categories } from "../../config/api/apiProducts";
 import { useServiceProducts } from "../../services";
 import { Grid } from "../components/grid";
 import { ProductItem } from "../products";
@@ -12,6 +12,7 @@ const Categories = [
   categories.NOW_PLAYING,
   categories.TOP_RATED,
 ];
+
 const HomeProducts = () => {
   const { getMovies } = useServiceProducts();
   const [movies, setMovies] = useState([]);

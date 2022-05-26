@@ -1,15 +1,15 @@
 import { Image } from "../../components/image";
-import { image_url_with_size } from "../../config/api/apiConfig";
-import { useGetInfoProducts, useGetVoteStar, useSlugify } from "../../hooks";
+import { image_url_with_size } from "../../config/api/apiProducts";
+import { useGetInfoProducts, useGetVoteStar, useNavigation } from "../../hooks";
 import { Href } from "../components/href";
 
 const ProductItem = ({ data, isTv }) => {
   const { renderStars } = useGetVoteStar();
   const { handleGetDiscount, handleGetPrice } = useGetInfoProducts();
-  const { handleSlug } = useSlugify();
+  const { detailsPage } = useNavigation();
 
   return (
-    <Href to={`details/${handleSlug(data.title)}/${data.id}`}>
+    <Href to={detailsPage(data.title || data.name, data.id)}>
       <div className="product-item">
         <div className="p-3 hover:use-shadow cursor-pointer transition-all">
           <div className="flex flex-col gap-y-2">

@@ -5,7 +5,7 @@ const useSlugify = () => {
     return slugify(slug, {
       locale: "vi",
       lower: true,
-      remove: /[@&'(\\s)<>#:_,.#$*]/,
+    remove: /[@&'(\\s)<>#:_,.#$*]/,
     });
   };
 

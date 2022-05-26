@@ -1,8 +1,9 @@
-import LocalStorage from "./LocalStorage";
 import useClickOutSide from "./useClickOutSide";
 import useGetHomeImages from "./useGetHomeImages";
 import useGetInfoProducts from "./useGetInfoProducts";
 import useGetVoteStar from "./useGetVoteStar";
+import LocalStorage from "./useLocalStorage";
+import useNavigation from "./useNavigation";
 import useSlugify from "./useSlugify";
 
 export {
@@ -12,4 +13,5 @@ export {
   LocalStorage,
   useSlugify,
   useClickOutSide,
+  useNavigation,
 };

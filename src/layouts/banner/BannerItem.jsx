@@ -1,15 +1,15 @@
 import { forwardRef } from "react";
 import { IArrowsNext, IArrowsPrev } from "../../components/icons";
 import { Image } from "../../components/image";
-import { image_url_original } from "../../config/api/apiConfig";
-import { useSlugify } from "../../hooks";
+import { image_url_original } from "../../config/api/apiProducts";
+import { useNavigation } from "../../hooks";
 import { Href } from "../components/href";
 
 const BannerItem = forwardRef(({ data }, ref) => {
-  const { handleSlug } = useSlugify();
+  const { detailsPage } = useNavigation();
   return (
     <div className="w-full rounded-md relative group cursor-pointer">
-      <Href to={`details/${handleSlug(data.title)}/${data.id}`}>
+      <Href to={detailsPage(data.title || data.name, data.id)}>
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.2)] to-[rgba(0,0,0,0.5)]"></div>
       </Href>
       <div className="flex items-center gap-x-3">

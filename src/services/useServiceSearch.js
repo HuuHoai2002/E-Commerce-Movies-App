@@ -1,4 +1,4 @@
-import { api_key } from "../config/api/apiConfig";
+import { api_key } from "../config/api/apiProducts";
 import axiosClient from "./axiosClient";
 
 const useServiceSearch = () => {

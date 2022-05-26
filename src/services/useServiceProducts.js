@@ -1,5 +1,5 @@
 import axios from "axios";
-import { api_key, base_url } from "../config/api/apiConfig";
+import { api_key, base_url } from "../config/api/apiProducts";
 
 const useServiceProducts = () => {
   async function getMovies(category = "", page = 1, language = "vi") {

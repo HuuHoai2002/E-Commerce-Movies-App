@@ -1,12 +1,13 @@
 import { Image } from "../../components/image";
-import { image_url_with_size } from "../../config/api/apiConfig";
-import { useGetInfoProducts, useGetVoteStar, useSlugify } from "../../hooks";
+import { image_url_with_size } from "../../config/api/apiProducts";
+import { useGetInfoProducts, useGetVoteStar, useNavigation } from "../../hooks";
 import { Href } from "../components/href";
 
 const ProductItemSmall = ({ data }) => {
   const { renderStars } = useGetVoteStar();
   const { handleGetPrice, handleGetDiscount } = useGetInfoProducts();
-  const { handleSlug } = useSlugify();
+  const { detailsPage } = useNavigation();
+
   const handleCheckMediaType = (media_type = "") => {
     if (media_type.includes("movie")) {
       return "Phim chiếu rạp";
@@ -14,7 +15,7 @@ const ProductItemSmall = ({ data }) => {
     return "Phim bộ";
   };
   return (
-    <Href to={`details/${handleSlug(data.title)}/${data.id}`}>
+    <Href to={detailsPage(data.title || data.name, data.id)}>
       <div className="flex items-start gap-x-2 cursor-pointer group">
         <div className="max-h-[150px] max-w-[100px] transition-all group-hover:scale-90">
           <Image

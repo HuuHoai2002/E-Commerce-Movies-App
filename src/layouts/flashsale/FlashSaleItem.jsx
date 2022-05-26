@@ -1,15 +1,16 @@
 import { Image } from "../../components/image";
-import { image_url_with_size } from "../../config/api/apiConfig";
-import { useGetInfoProducts, useSlugify } from "../../hooks";
+import { image_url_with_size } from "../../config/api/apiProducts";
+import { useGetInfoProducts, useNavigation } from "../../hooks";
 import { Href } from "../components/href";
 
 const FlashSaleItem = ({ data }) => {
   const { handleGetDiscount, handleGetPrice, handleGetSold } =
     useGetInfoProducts();
-  const { handleSlug } = useSlugify();
+  const { detailsPage } = useNavigation();
+
   return (
     <div className="flash-sale-item cursor-pointer pb-3 px-3 hover:use-shadow">
-      <Href to={`details/${handleSlug(data.title)}/${data.id}`}>
+      <Href to={detailsPage(data.title || data.name, data.id)}>
         <div className="flex flex-col justify-center gap-y-2">
           <div className="h-[180px]">
             <Image
