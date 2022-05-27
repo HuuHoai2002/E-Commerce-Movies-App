@@ -22,7 +22,7 @@ const ProductsInfo = ({ data }) => {
                 (Xem đánh giá)
               </span>
               <span className="min-h-full w-[1px] bg-cbg"></span>
-              <span className="text-cbluem font-medium">
+              <span className="text-cblue font-medium">
                 Đã bán {data.vote_count}
               </span>
             </div>

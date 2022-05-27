@@ -12,7 +12,7 @@ import { ProductInfo } from "../layouts/products";
 import { useServiceProducts } from "../services";
 
 const ProductDetails = () => {
-  const [params, setParams] = useSearchParams();
+  const [params] = useSearchParams();
   const id = params.get("id");
   const type = params.get("type");
 
@@ -41,10 +41,6 @@ const ProductDetails = () => {
   }, []);
 
   const [values, setValues] = useState(1);
-  console.log(
-    "🚀 ~ file: ProductDetails.jsx ~ line 21 ~ ProductDetails ~ movieInfo",
-    movieInfo
-  );
 
   return (
     <Container minHeight="100%">
