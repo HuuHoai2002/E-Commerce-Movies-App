@@ -1,27 +1,30 @@
 import { Heading } from "../../components/heading";
+import { Tooltip } from "../../components/tooltip";
 import { useGetVoteStar } from "../../hooks";
 
 const ProductsInfo = ({ data }) => {
   const { renderStars } = useGetVoteStar();
   return (
     <div className="">
-      <div className="w-full flex flex-col">
-        <div className="py-4">
+      <div className="w-full flex flex-col gap-y-3">
+        <div className="mt-4">
           <div className="mb-2">
             <Heading
               title={data.title || data.name}
               isCenter={false}
-              className="text-cheading !text-2xl font-medium"
+              className="text-cheading !text-2xl font-normal"
             />
           </div>
           <div className="flex items-center gap-x-3">
             <div>{renderStars(data.vote_average)}</div>
             <div className="flex justify-between gap-x-3 text-ctext text-[15px]">
               <span className="cursor-pointer leading-5 hover:opacity-80">
-                (Xem 9 đánh giá)
+                (Xem đánh giá)
               </span>
               <span className="min-h-full w-[1px] bg-cbg"></span>
-              <span className="text-cblue">Đã bán {data.vote_count}</span>
+              <span className="text-cbluem font-medium">
+                Đã bán {data.vote_count}
+              </span>
             </div>
           </div>
         </div>
@@ -50,7 +53,45 @@ const ProductsInfo = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="w-full h-[1px] bg-cbg my-5"></div>
+        <div className="">
+          <div className="text-sm">
+            <table>
+              <tbody>
+                <tr>
+                  <td className="p-2 min-w-[150px] font-medium">
+                    Năm phát hành:{" "}
+                  </td>
+                  <td className="p-2 text-ctext">
+                    {new Date(data.release_date).getFullYear()}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="p-2 min-w-[150px] font-medium">
+                    Thời lượng:{" "}
+                  </td>
+                  <td className="p-2 text-ctext">{data.runtime} phút</td>
+                </tr>
+                <tr>
+                  <td className="p-2 min-w-[150px] font-medium">Thể loại: </td>
+                  <td className="p-2 text-ctext">{data.genres[0].name}</td>
+                </tr>
+                <tr>
+                  <td className="p-2 min-w-[150px] font-medium">Chi tiết: </td>
+                  <td className="p-2 text-cblue font-medium cursor-pointer">
+                    <Tooltip
+                      children={
+                        data.overview ||
+                        "Hiện tại bộ phim này chưa có chi tiết về phim , vui lòng thử lại sau !"
+                      }
+                      text="Xem chi tiết phim"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="w-full h-[1px] bg-cbg my-3 leading-none"></div>
       </div>
     </div>
   );

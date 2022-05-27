@@ -5,6 +5,7 @@ import useGetVoteStar from "./useGetVoteStar";
 import LocalStorage from "./useLocalStorage";
 import useNavigation from "./useNavigation";
 import useSlugify from "./useSlugify";
+import useHover from "./useHover"
 
 export {
   useGetVoteStar,
@@ -14,4 +15,5 @@ export {
   useSlugify,
   useClickOutSide,
   useNavigation,
+  useHover,
 };

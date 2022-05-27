@@ -77,7 +77,7 @@ const HomeProducts = () => {
           <div>
             <Button
               title={`${loading ? "Đang tải ..." : "Xem thêm"}`}
-              className="!bg-transparent border border-cprice text-cprice min-w-[240px] hover:!bg-cprice hover:text-white !rounded-md"
+              className="!bg-transparent border border-cprice !text-cprice min-w-[240px] hover:!bg-cprice hover:!text-white !rounded-md"
               onClick={handleChangePage}
             />
           </div>
