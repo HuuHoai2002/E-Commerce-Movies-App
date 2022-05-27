@@ -4,9 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import { routes } from "./config/routes";
 import { Header } from "./layouts/header";
 
-const HomePage = React.lazy(() => import("./pages/HomePage"));
-const ProductDetails = React.lazy(() => import("./pages/ProductDetails"));
-const CartPage = React.lazy(() => import("./pages/CartPage"));
+const HomePage = React.lazy(() => import("./pages/Home"));
+const ProductDetails = React.lazy(() => import("./pages/Details"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const App = () => {
@@ -20,7 +19,7 @@ const App = () => {
             path={`${routes.details}/:slug`}
             element={<ProductDetails />}
           />
-          <Route path={`${routes.cart}`} element={<CartPage />} />
+          {/* <Route path={`${routes.cart}`} element={<CartPage />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

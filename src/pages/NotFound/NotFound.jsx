@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { Heading } from "../components/heading";
+import { Heading } from "../../components/heading";
 
 const NotFound = () => {
   const navigate = useNavigate();

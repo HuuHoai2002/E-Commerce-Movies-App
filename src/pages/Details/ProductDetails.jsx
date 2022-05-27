@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Button } from "../components/button";
-import { Image } from "../components/image";
-import { QuantityInput } from "../components/quantityInput";
-import { image_url_with_size } from "../config/api/apiProducts";
-import { useGetInfoProducts } from "../hooks";
-import { Container } from "../layouts/components/container";
-import { Flex } from "../layouts/components/flex";
-import { View } from "../layouts/components/view";
-import { ProductInfo } from "../layouts/products";
-import { useServiceProducts } from "../services";
+import { Button } from "../../components/button";
+import { Image } from "../../components/image";
+import { QuantityInput } from "../../components/quantityInput";
+import { image_url_with_size } from "../../config/api/apiProducts";
+import { useGetInfoProducts } from "../../hooks";
+import { Container } from "../../layouts/components/container";
+import { Flex } from "../../layouts/components/flex";
+import { View } from "../../layouts/components/view";
+import { ProductInfo } from "../../layouts/products";
+import { useServiceProducts } from "../../services";
 
 const ProductDetails = () => {
+  //get url params: id and type
   const [params] = useSearchParams();
   const id = params.get("id");
   const type = params.get("type");
 
-  const { handleGetDiscount, handleGetPrice, handleGetRootPrice } =
-    useGetInfoProducts();
+  const { getDiscount, getPrice, getRootPrice } = useGetInfoProducts();
   const { getMovieDetails } = useServiceProducts();
   const [movieInfo, setMovieInfo] = useState(null);
 
@@ -25,13 +25,13 @@ const ProductDetails = () => {
     const fetchData = async () => {
       try {
         const response = await getMovieDetails(id);
-        const clone = {
+        const newResponse = {
           ...response,
-          price: handleGetPrice(response.vote_average, false),
-          rootPrice: handleGetRootPrice(response.vote_average, false),
-          discount: handleGetDiscount(response.vote_average),
+          price: getPrice(response.vote_average, false),
+          rootPrice: getRootPrice(response.vote_average, false),
+          discount: getDiscount(response.vote_average),
         };
-        clone && setMovieInfo(clone);
+        newResponse && setMovieInfo(newResponse);
       } catch (error) {
         console.log(error);
       }
@@ -39,7 +39,9 @@ const ProductDetails = () => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const { poster_path } = movieInfo;
 
+  // select values
   const [values, setValues] = useState(1);
 
   return (
@@ -50,7 +52,7 @@ const ProductDetails = () => {
             <View>
               <div className="">
                 <Image
-                  src={`${image_url_with_size}${movieInfo.poster_path}`}
+                  src={`${image_url_with_size}${poster_path}`}
                   className="rounded-none"
                 />
               </div>
