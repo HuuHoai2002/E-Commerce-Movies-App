@@ -12,8 +12,12 @@ const Banner = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getMovies(categories.POPULAR, 1);
-      response && setMovies(response.results);
+      try {
+        const response = await getMovies(categories.POPULAR, 1);
+        response && setMovies(response.results);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -21,29 +25,30 @@ const Banner = () => {
   const swiperRef = useRef(null);
   return (
     <div className="home-banner">
-      <div className="">
-        <Swiper
-          className="rounded-md"
-          speed={1000}
-          effect={"fade"}
-          navigation={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Autoplay, EffectFade, Pagination]}
-          ref={swiperRef}>
-          {movies &&
-            movies.map((item) => (
+      {movies && (
+        <div className="min-h-[450px]">
+          <Swiper
+            className="rounded-md"
+            speed={1000}
+            effect={"fade"}
+            navigation={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Autoplay, EffectFade, Pagination]}
+            ref={swiperRef}>
+            {movies.map((item) => (
               <SwiperSlide key={item.id}>
                 <BannerItem data={item} ref={swiperRef} />
               </SwiperSlide>
             ))}
-        </Swiper>
-      </div>
+          </Swiper>
+        </div>
+      )}
     </div>
   );
 };

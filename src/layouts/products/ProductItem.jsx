@@ -5,7 +5,7 @@ import { Href } from "../components/href";
 
 const ProductItem = ({ data, isTv }) => {
   const { renderStars } = useGetVoteStar();
-  const { handleGetDiscount, handleGetPrice } = useGetInfoProducts();
+  const { getDiscount, getPrice } = useGetInfoProducts();
   const { detailsPage } = useNavigation();
 
   return (
@@ -28,10 +28,10 @@ const ProductItem = ({ data, isTv }) => {
               </div>
               <div className="price discount flex items-center gap-x-2">
                 <span className="text-cprice font-bold leading-6">
-                  {handleGetPrice(data.vote_average, false)}
+                  {getPrice(data.vote_average, false)}
                 </span>
                 <span className="leading-4 text-xs border border-cprice rounded-sm text-cprice px-[2px] bg-[#fff0f1]">
-                  -{handleGetDiscount(data.vote_average)}%
+                  -{getDiscount(data.vote_average)}%
                 </span>
               </div>
               <div className="mt-1">

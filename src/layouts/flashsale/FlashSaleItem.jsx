@@ -4,8 +4,7 @@ import { useGetInfoProducts, useNavigation } from "../../hooks";
 import { Href } from "../components/href";
 
 const FlashSaleItem = ({ data }) => {
-  const { handleGetDiscount, handleGetPrice, handleGetSold } =
-    useGetInfoProducts();
+  const { getDiscount, getPrice, getSold } = useGetInfoProducts();
   const { detailsPage } = useNavigation();
 
   return (
@@ -21,10 +20,10 @@ const FlashSaleItem = ({ data }) => {
           </div>
           <div className="price discount flex items-center gap-x-2">
             <span className="text-cprice font-bold leading-6">
-              {handleGetPrice(data.vote_average)}
+              {getPrice(data.vote_average)}
             </span>
             <span className="leading-4 text-xs border border-cprice rounded-sm text-cprice px-[2px] bg-[#fff0f1]">
-              -{handleGetDiscount(data.vote_average)}%
+              -{getDiscount(data.vote_average)}%
             </span>
           </div>
           <div
@@ -32,10 +31,10 @@ const FlashSaleItem = ({ data }) => {
             <div
               className="absolute left-0 h-5 bg-cprice rounded-[10px] z-0"
               style={{
-                width: `${handleGetSold(data.vote_average)}%`,
+                width: `${getSold(data.vote_average)}%`,
               }}></div>
             <span className="w-full text-center text-xs text-white font-medium z-50">
-              Đã bán {handleGetSold(data.vote_average)}
+              Đã bán {getSold(data.vote_average)}
             </span>
             <div className="absolute left-1 top-[10%] -translate-y-2/4">
               <img

@@ -7,15 +7,17 @@ const FlexStyles = styled.div`
   border-radius: ${(props) => props.radius || "6px"};
   padding: ${(props) => props.padding || "0px"};
   gap: ${(props) => props.gap || "0px"};
+  margin-top: ${(props) => props.mt || "0px"};
 `;
 
-const Flex = ({ children, background, radius, padding, gap }) => {
+const Flex = ({ children, background, radius, padding, gap, mt }) => {
   return (
     <FlexStyles
       background={background}
       radius={radius}
       padding={padding}
-      gap={gap}>
+      gap={gap}
+      mt={mt}>
       {children}
     </FlexStyles>
   );

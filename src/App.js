@@ -4,9 +4,11 @@ import { Route, Routes } from "react-router-dom";
 import { routes } from "./config/routes";
 import { Header } from "./layouts/header";
 
-const HomePage = React.lazy(() => import("./pages/Home"));
-const ProductDetails = React.lazy(() => import("./pages/Details"));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
+const HomePage = React.lazy(() => import("./pages/Home/Home"));
+const ProductDetails = React.lazy(() =>
+  import("./pages/Details/ProductDetails")
+);
+const NotFound = React.lazy(() => import("./pages/NotFound/NotFound"));
 
 const App = () => {
   return (

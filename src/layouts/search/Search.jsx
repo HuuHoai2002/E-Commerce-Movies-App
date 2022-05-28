@@ -64,7 +64,11 @@ const Search = () => {
           <div className="search-modal">
             {show && (
               <SearchModal top="43px" show={show}>
-                <SearchContent movies={movies} loading={loading} />
+                <SearchContent
+                  movies={movies}
+                  loading={loading}
+                  moviesIsNull={values}
+                />
               </SearchModal>
             )}
           </div>

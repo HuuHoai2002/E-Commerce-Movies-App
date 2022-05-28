@@ -5,7 +5,7 @@ const useServiceSearch = () => {
   async function searchMovie() {}
 
   async function searchKeywords(params) {
-    return await axiosClient.get(`/search/multi?api_key=${api_key}`, {
+    return await axiosClient.get(`/search/movie?api_key=${api_key}`, {
       params,
     });
   }

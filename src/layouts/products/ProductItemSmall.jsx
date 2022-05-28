@@ -5,15 +5,15 @@ import { Href } from "../components/href";
 
 const ProductItemSmall = ({ data }) => {
   const { renderStars } = useGetVoteStar();
-  const { handleGetPrice, handleGetDiscount } = useGetInfoProducts();
+  const { getPrice, getDiscount } = useGetInfoProducts();
   const { detailsPage } = useNavigation();
 
-  const handleCheckMediaType = (media_type = "") => {
-    if (media_type.includes("movie")) {
-      return "Phim chiếu rạp";
-    }
-    return "Phim bộ";
-  };
+  // const handleCheckMediaType = (media_type = "") => {
+  //   if (media_type.includes("movie")) {
+  //     return "Phim chiếu rạp";
+  //   }
+  //   return "Phim bộ";
+  // };
   return (
     <Href to={detailsPage(data.title || data.name, data.id)}>
       <div className="flex items-start gap-x-2 cursor-pointer group">
@@ -36,7 +36,8 @@ const ProductItemSmall = ({ data }) => {
               <div>
                 Thể loại:{" "}
                 <span className="text-cprice">
-                  {handleCheckMediaType(data.media_type)}
+                  {/* {handleCheckMediaType(data.media_type)} */}
+                  Phim chiếu rạp
                 </span>
               </div>
             </div>
@@ -46,10 +47,10 @@ const ProductItemSmall = ({ data }) => {
           </div>
           <div className="price discount flex items-center mt-auto gap-x-2">
             <span className="text-cprice font-bold leading-6">
-              {handleGetPrice(data.vote_average, false)}
+              {getPrice(data.vote_average, false)}
             </span>
             <span className="leading-4 text-xs border border-cprice rounded-sm text-cprice px-[2px] bg-[#fff0f1]">
-              -{handleGetDiscount(data.vote_average)}%
+              -{getDiscount(data.vote_average)}%
             </span>
           </div>
         </div>

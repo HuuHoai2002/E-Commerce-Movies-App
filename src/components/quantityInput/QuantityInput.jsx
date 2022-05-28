@@ -1,6 +1,11 @@
 // import { toast } from "react-toastify";
 
-const QuantityInput = ({ values, setValues, disabledSelect = false }) => {
+const QuantityInput = ({
+  title = "Số lượng",
+  values,
+  setValues,
+  disabledSelect = false,
+}) => {
   // const handleClick = () => {
   //   if (disabledSelect) {
   //     toast.error("Bạn chỉ có thể chọn 1 sản phẩm");
@@ -16,7 +21,7 @@ const QuantityInput = ({ values, setValues, disabledSelect = false }) => {
   return (
     <div className="">
       <div className="flex flex-col gap-y-3">
-        <span className="text-[15px] leading-5 font-medium">Số lượng</span>
+        <span className="text-[15px] leading-5 font-medium">{title}</span>
         <div className="flex items-center gap-x-0">
           <button
             className={`flex items-center justify-center w-8 h-[30px] border border-[#ececec] border-r-transparent rounded-tl-[4px] rounded-bl-[4px] hover:bg-cbg ${

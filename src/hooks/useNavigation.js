@@ -5,7 +5,7 @@ const useNavigation = () => {
   const { handleSlug } = useSlugify();
 
   const detailsPage = (slug, id = "") => {
-    return `${routes.details}/${handleSlug(slug)}?id=${id}`;
+    return `/${routes.details}/${handleSlug(slug)}?id=${id}`;
   };
 
   const userPage = () => {};

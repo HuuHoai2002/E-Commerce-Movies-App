@@ -3,7 +3,7 @@ import { Image } from "../../components/image";
 import { useGetHomeImages } from "../../hooks";
 import { ProductList } from "../products";
 
-const SearchContent = ({ movies, loading }) => {
+const SearchContent = ({ movies, loading, moviesIsNull }) => {
   const { search } = useGetHomeImages();
   return (
     <div className="">
@@ -17,10 +17,19 @@ const SearchContent = ({ movies, loading }) => {
                 <ProductList movies={movies} isRow={true} />
               </div>
             ) : (
-              <div className="flex items-center justify-center min-w-full min-h-[420px]">
-                <div>
-                  <Image src={search} />
-                </div>
+              <div>
+                {moviesIsNull ? (
+                  <div className="p-2 font-medium text-ctext">
+                    Không tìm thấy bộ phim nào có tên:{" "}
+                    <span className="text-cprice">"{moviesIsNull}"</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center min-w-full min-h-[420px]">
+                    <div>
+                      <Image src={search} />
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
