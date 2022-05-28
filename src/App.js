@@ -2,6 +2,7 @@ import React, { Fragment, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 // import { Footer } from "./layouts/footer";
 import { routes } from "./config/routes";
+import { Scroll } from "./layouts/components/scroll";
 import { Header } from "./layouts/header";
 
 const HomePage = React.lazy(() => import("./pages/Home/Home"));
@@ -15,6 +16,7 @@ const App = () => {
     <Fragment>
       <Header />
       <Suspense fallback={<div>Loading ....</div>}>
+        <Scroll />
         <Routes>
           <Route path={`${routes.home}`} element={<HomePage />} />
           <Route
