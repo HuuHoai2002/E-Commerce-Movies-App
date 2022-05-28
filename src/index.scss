@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply mx-auto min-h-screen max-w-[1400px] bg-cbg;
+    @apply mx-auto min-h-screen bg-cbg;
   }
   html {
     font-family: "Noto Sans", sans-serif;
@@ -40,6 +40,14 @@
   .use-truncate {
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
+  .reviews-truncete {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;

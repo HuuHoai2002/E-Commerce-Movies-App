@@ -8,7 +8,7 @@ import ProductItem from "./ProductItem";
 const ProductListScroll = ({ movies, isFlashSale = false }) => {
   const swiperRef = useRef(null);
   return (
-    <div className="body relative group">
+    <div className="list-product body relative group">
       <Swiper
         className="rounded-md"
         speed={1000}

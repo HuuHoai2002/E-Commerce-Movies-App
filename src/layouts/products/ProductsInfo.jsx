@@ -81,7 +81,7 @@ const ProductsInfo = ({ data }) => {
                     <Tooltip
                       children={
                         data.overview ||
-                        "Hiện tại bộ phim này chưa có chi tiết về phim , vui lòng thử lại sau !"
+                        "Hiện tại bộ phim này chưa có chi tiết , vui lòng thử lại sau !"
                       }
                       text="Xem chi tiết phim"
                     />

@@ -9,7 +9,8 @@ import { Container } from "../../layouts/components/container";
 import { Flex } from "../../layouts/components/flex";
 import { View } from "../../layouts/components/view";
 import { ProductInfo } from "../../layouts/products";
-import SimilarProduct from "../../layouts/similar/SimilarProduct";
+import Review from "../../layouts/reviews/Review";
+import { SimilarProduct } from "../../layouts/similar";
 import { useServiceProducts } from "../../services";
 import { setTitle } from "../../utils";
 
@@ -17,7 +18,7 @@ const ProductDetails = () => {
   //get url params: id and type
   const [params] = useSearchParams();
   const id = params.get("id");
-  const type = params.get("type");
+  // const type = params.get("type");
 
   const { getDiscount, getPrice, getRootPrice } = useGetInfoProducts();
   const { getMovieDetails } = useServiceProducts();
@@ -90,6 +91,9 @@ const ProductDetails = () => {
           </Flex>
           <div className="bg-white mt-4 rounded">
             <SimilarProduct id={id} />
+          </div>
+          <div className="bg-white mt-4 rounded">
+            <Review id={id} />
           </div>
         </Fragment>
       )}

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const ContainerStyles = styled.div`
   width: 100%;
+  max-width: 1360px;
   height: 100%;
   min-height: ${(props) => props.minHeight || "100vh"};
   margin-left: auto;
