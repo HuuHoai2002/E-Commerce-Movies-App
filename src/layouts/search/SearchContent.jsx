@@ -15,24 +15,24 @@ const SearchContent = ({ movies, loading, keyword, setShow }) => {
           <div className="">
             {movies.length > 0 ? (
               <div>
-                <Link to={searchKeyword(keyword)}>
+                {/* <Link to={searchKeyword(keyword)}>
                   <div className="p-2 bg-cbg cursor-pointer">
                     Tìm toàn bộ sản phẩm có tên :
                     <span className="text-cblue font-medium"> "{keyword}"</span>
                   </div>
-                </Link>
+                </Link> */}
                 <div className="w-full flex flex-col">
                   {movies.map((item) => (
-                    <div
-                      className="px-2 py-1 bg-white hover:bg-cbg hover:opacity-80"
-                      key={item.id}>
-                      <Link
-                        to={searchKeyword(item.title || item.name)}
-                        className="text-sm"
+                    <Link to={searchKeyword(item.title || item.name)}>
+                      <div
+                        className="px-3 py-2 bg-white hover:bg-cbg hover:opacity-80"
+                        key={item.id}
                         onClick={() => setShow(false)}>
-                        {item.title || item.name}
-                      </Link>
-                    </div>
+                        <span className="text-sm">
+                          {item.title || item.name}
+                        </span>
+                      </div>
+                    </Link>
                   ))}
                 </div>
               </div>

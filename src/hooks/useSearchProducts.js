@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { serviceSearch } from "../services";
 
 export default function useSearchProducts(keyword = "", language = "vi") {
@@ -6,10 +7,17 @@ export default function useSearchProducts(keyword = "", language = "vi") {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [params] = useSearchParams();
+  const pathname = params.get("keyword");
 
   const handleNextPage = useCallback(() => {
     setPage((page) => page + 1);
   }, []);
+
+  useEffect(() => {
+    setData([]);
+    setPage(1);
+  }, [pathname]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,8 +37,9 @@ export default function useSearchProducts(keyword = "", language = "vi") {
       }
     };
     fetchData();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page, keyword]);
 
   return {
     loading,

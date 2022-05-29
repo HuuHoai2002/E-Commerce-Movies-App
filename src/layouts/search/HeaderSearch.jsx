@@ -1,8 +1,10 @@
 import lodash from "lodash";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/button";
 import { ISearch } from "../../components/icons";
 import { SearchModal } from "../../components/searchModal";
+import { routes } from "../../config/routes";
 import { useClickOutSide, useSearchKeyword } from "../../hooks";
 import SearchContent from "./SearchContent";
 
@@ -15,17 +17,18 @@ const HeaderSearch = () => {
     if (!inputValues.startsWith(" ")) setValues(inputValues);
   }, 500);
 
-  const handleClickInput = useCallback(() => {
-    setShow(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   // hooks fetching data with keyword
   const { data, loading } = useSearchKeyword(values);
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    if (!values.startsWith(" ") && values !== "") {
+      navigate(`/${routes.search}?keyword=${values}`);
+    }
+  };
   return (
-    <div className="w-full flex items-center" ref={nodeRef}>
+    <div className="w-full flex items-center">
       <div className="w-full flex items-center gap-x-2 relative">
-        <div className="relative flex-1">
+        <div className="relative flex-1" ref={nodeRef}>
           <input
             type="text"
             className="w-full min-h-[45px] py-2 px-3 border-none outline-none rounded-sm placeholder:text-sm"
@@ -33,7 +36,6 @@ const HeaderSearch = () => {
               "Tìm bộ phim, diễn viên, hãng sản xuất hay danh mục bạn mong muốn..."
             }
             spellCheck={false}
-            onClick={handleClickInput}
             onChange={handleSetValues}
             ref={inputRef}
           />
@@ -50,12 +52,7 @@ const HeaderSearch = () => {
             )}
           </div>
         </div>
-        <Button
-          title="Tìm Kiếm"
-          activeHover={true}
-          onClick={() => {
-            inputRef.current.focus();
-          }}>
+        <Button title="Tìm Kiếm" activeHover={true} onClick={handleNavigate}>
           <ISearch />
         </Button>
       </div>

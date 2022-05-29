@@ -19,7 +19,6 @@ const ProductDetails = () => {
   // const type = params.get("type");
 
   const { data } = useFetchingProductDetails(id);
-  console.log(data);
   // select values
   const [values, setValues] = useState(1);
 
