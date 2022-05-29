@@ -1,28 +1,13 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { categories } from "../../config/api/apiProducts";
-import { useServiceProducts } from "../../services";
+import { useFetchingData } from "../../hooks";
 import { ProductListScroll } from "../products/";
 
 const FlashSale = () => {
-  const { getMovies } = useServiceProducts();
-
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getMovies(categories.POPULAR, 2);
-        response && setMovies(response.results);
-      } catch (error) {
-        console.log("Error: ", error);
-      }
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { data } = useFetchingData(categories.POPULAR, 2);
   return (
     <div className="flash-sale bg-white rounded-md">
-      {movies && (
+      {data && (
         <Fragment>
           <div className="heading px-4 py-3 w-full flex items-center justify-between">
             <div className="flex items-center gap-x-1">
@@ -44,7 +29,7 @@ const FlashSale = () => {
               Xem Thêm
             </div>
           </div>
-          <ProductListScroll isFlashSale={true} movies={movies} />
+          <ProductListScroll isFlashSale={true} movies={data} />
         </Fragment>
       )}
     </div>

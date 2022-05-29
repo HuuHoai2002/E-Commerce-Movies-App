@@ -1,15 +1,13 @@
 import lodash from "lodash";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Button } from "../../components/button";
 import { ISearch } from "../../components/icons";
 import { SearchModal } from "../../components/searchModal";
-import { useClickOutSide } from "../../hooks";
-import { useServiceSearch } from "../../services";
+import { useClickOutSide, useSearchKeyword } from "../../hooks";
 import SearchContent from "./SearchContent";
 
 const Search = () => {
   const { show, setShow, nodeRef } = useClickOutSide("div");
-
   const [values, setValues] = useState("");
   const inputRef = useRef();
   const handleSetValues = lodash.debounce((e) => {
@@ -22,30 +20,8 @@ const Search = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { searchKeywords } = useServiceSearch();
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await searchKeywords({
-          query: values,
-          language: "vi",
-        });
-        response && setMovies(response.results);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (values) {
-      fetchData();
-    } else {
-      setMovies([]);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [values]);
+  // hooks fetching data with keyword
+  const { data, loading } = useSearchKeyword(values);
   return (
     <div className="w-full flex items-center" ref={nodeRef}>
       <div className="w-full flex items-center gap-x-2 relative">
@@ -62,12 +38,12 @@ const Search = () => {
             ref={inputRef}
           />
           <div className="search-modal">
-            {show && (
+            {!!show && (
               <SearchModal top="43px" show={show}>
                 <SearchContent
-                  movies={movies}
+                  movies={data}
                   loading={loading}
-                  moviesIsNull={values}
+                  keyword={values}
                 />
               </SearchModal>
             )}

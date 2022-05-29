@@ -4,4 +4,5 @@ export const routes = {
   user: "user",
   login: "login",
   cart: "cart",
+  search: "search"
 };

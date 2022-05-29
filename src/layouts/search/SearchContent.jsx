@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Image } from "../../components/image";
-import { useGetHomeImages } from "../../hooks";
-import { ProductList } from "../products";
+import { useGetHomeImages, useNavigation } from "../../hooks";
 
-const SearchContent = ({ movies, loading, moviesIsNull }) => {
+const SearchContent = ({ movies, loading, keyword }) => {
   const { search } = useGetHomeImages();
+  const { searchKeyword } = useNavigation();
   return (
     <div className="">
       <div className="flex flex-col justify-center">
@@ -13,15 +14,29 @@ const SearchContent = ({ movies, loading, moviesIsNull }) => {
         ) : (
           <div className="">
             {movies.length > 0 ? (
-              <div className="p-2">
-                <ProductList movies={movies} isRow={true} />
-              </div>
-            ) : (
               <div>
-                {moviesIsNull ? (
+                <Link to={searchKeyword(keyword)}>
+                  <div className="p-2 bg-cbg cursor-pointer">
+                    Tìm toàn bộ sản phẩm có tên :
+                    <span className="text-cblue font-medium"> "{keyword}"</span>
+                  </div>
+                </Link>
+                <div className="w-full flex flex-col">
+                  {movies.map((item) => (
+                    <div
+                      className="px-2 py-1 bg-white hover:bg-cbg hover:opacity-60 transition-all"
+                      key={item.id}>
+                      <span className="text-sm">{item.title}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+          ) : (
+              <div>
+                {keyword ? (
                   <div className="p-2 font-medium text-ctext">
-                    Không tìm thấy bộ phim nào có tên:{" "}
-                    <span className="text-cprice">"{moviesIsNull}"</span>
+                    Không tìm thấy từ khóa nào có tên:{" "}
+                    <span className="text-cprice">"{keyword}"</span>
                   </div>
                 ) : (
                   <div className="flex items-center justify-center min-w-full min-h-[420px]">

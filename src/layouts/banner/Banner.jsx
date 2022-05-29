@@ -1,31 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Autoplay, EffectFade, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { categories } from "../../config/api/apiProducts";
-import { useServiceProducts } from "../../services";
+import { useFetchingData } from "../../hooks";
 import BannerItem from "./BannerItem";
 
 const Banner = () => {
-  const { getMovies } = useServiceProducts();
-
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getMovies(categories.POPULAR, 1);
-        response && setMovies(response.results);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { data } = useFetchingData(categories.POPULAR);
   const swiperRef = useRef(null);
   return (
     <div className="home-banner">
-      {movies && (
+      {data && (
         <div className="min-h-[450px]">
           <Swiper
             className="rounded-md"
@@ -41,7 +26,7 @@ const Banner = () => {
             }}
             modules={[Autoplay, EffectFade, Pagination]}
             ref={swiperRef}>
-            {movies.map((item) => (
+            {data.map((item) => (
               <SwiperSlide key={item.id}>
                 <BannerItem data={item} ref={swiperRef} />
               </SwiperSlide>
