@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { serviceSearch } from "../services";
 
-export default function useSearchProducts(keyword) {
+export default function useSearchProducts(keyword = "", language = "vi") {
   const { searchProducts } = serviceSearch();
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
@@ -17,7 +17,8 @@ export default function useSearchProducts(keyword) {
         setLoading(true);
         const response = await searchProducts({
           query: keyword,
-          page: page,
+          language,
+          page,
         });
         page !== 1
           ? setData((moviesPrev) => [...moviesPrev, ...response.results])

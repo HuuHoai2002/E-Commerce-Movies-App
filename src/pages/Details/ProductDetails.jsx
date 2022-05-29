@@ -1,18 +1,16 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "../../components/button";
 import { Image } from "../../components/image";
 import { QuantityInput } from "../../components/quantityInput";
 import { image_url_with_size } from "../../config/api/apiProducts";
+import { useFetchingProductDetails } from "../../hooks";
 import { Container } from "../../layouts/components/container";
 import { Flex } from "../../layouts/components/flex";
 import { View } from "../../layouts/components/view";
 import { ProductInfo } from "../../layouts/products";
 import { Review } from "../../layouts/reviews";
 import { SimilarProduct } from "../../layouts/similar";
-import { serviceProducts } from "../../services";
-import { setTitle } from "../../utils";
-import { getInfoProducts } from "../../utils/products";
 
 const ProductDetails = () => {
   //get url params: id and type
@@ -20,43 +18,21 @@ const ProductDetails = () => {
   const id = params.get("id");
   // const type = params.get("type");
 
-  const { getDiscount, getPrice, getRootPrice } = getInfoProducts();
-  const { getProductsDetails } = serviceProducts();
-  const [movieInfo, setMovieInfo] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getProductsDetails(id);
-        const newResponse = {
-          ...response,
-          price: getPrice(response.vote_average, false),
-          rootPrice: getRootPrice(response.vote_average, false),
-          discount: getDiscount(response.vote_average),
-        };
-        newResponse && setMovieInfo(newResponse);
-        setTitle(newResponse.title || newResponse.name);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
-
+  const { data } = useFetchingProductDetails(id);
+  console.log(data);
   // select values
   const [values, setValues] = useState(1);
 
   return (
     <Container>
-      {movieInfo && (
+      {data && (
         <Fragment>
           <Flex radius="4px">
             <div className="max-w-[460px] py-4 pl-4">
               <View>
                 <div className="">
                   <Image
-                    src={`${image_url_with_size}${movieInfo.poster_path}`}
+                    src={`${image_url_with_size}${data.poster_path}`}
                     className="rounded-none"
                   />
                 </div>
@@ -64,7 +40,7 @@ const ProductDetails = () => {
             </div>
             <div className="min-h-full w-[1px] bg-cbg shrink-0 mx-8"></div>
             <div className="flex-1 flex flex-col pr-4 pb-4">
-              <ProductInfo data={movieInfo} />
+              <ProductInfo data={data} />
               <div className="action mt-auto">
                 <div className="w-full flex flex-col gap-y-5">
                   <QuantityInput

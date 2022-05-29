@@ -2,11 +2,11 @@ import { useRef } from "react";
 import { Autoplay, EffectFade, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { categories } from "../../config/api/apiProducts";
-import { useFetchingData } from "../../hooks";
+import { useFetchingProducts } from "../../hooks";
 import BannerItem from "./BannerItem";
 
 const Banner = () => {
-  const { data } = useFetchingData(categories.POPULAR);
+  const { data } = useFetchingProducts(categories.POPULAR);
   const swiperRef = useRef(null);
   return (
     <div className="home-banner">

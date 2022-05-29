@@ -1,9 +1,9 @@
 import { contents } from "../../config/api/apiProducts";
-import { useFetchingContent } from "../../hooks";
+import { useFetchingProductsContent } from "../../hooks";
 import { ProductListScroll } from "../products";
 
 const SimilarProduct = ({ id, title }) => {
-  const { data } = useFetchingContent(id, contents.SIMILAR);
+  const { data } = useFetchingProductsContent(id, contents.SIMILAR);
   return (
     <div className="similar-product">
       {data && (

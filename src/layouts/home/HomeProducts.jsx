@@ -1,7 +1,7 @@
 import { Button } from "../../components/button";
 import { Heading } from "../../components/heading";
 import { categories } from "../../config/api/apiProducts";
-import { useFetchingDataWithLoadMore } from "../../hooks";
+import { useFetchingProductsWithLoadMore } from "../../hooks";
 import { Grid } from "../components/grid";
 import { ProductItem } from "../products";
 import HomeHeaderContent from "./HomeHeaderContent";
@@ -19,7 +19,7 @@ const HomeProducts = () => {
     categoryActive,
     handleChangeCategory,
     handleNextPage,
-  } = useFetchingDataWithLoadMore(Categories);
+  } = useFetchingProductsWithLoadMore(Categories);
 
   return (
     <div className="home-products">

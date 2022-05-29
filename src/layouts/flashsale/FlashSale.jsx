@@ -1,10 +1,10 @@
 import { Fragment } from "react";
 import { categories } from "../../config/api/apiProducts";
-import { useFetchingData } from "../../hooks";
+import { useFetchingProducts } from "../../hooks";
 import { ProductListScroll } from "../products/";
 
 const FlashSale = () => {
-  const { data } = useFetchingData(categories.POPULAR, 2);
+  const { data } = useFetchingProducts(categories.POPULAR, 2);
   return (
     <div className="flash-sale bg-white rounded-md">
       {data && (
