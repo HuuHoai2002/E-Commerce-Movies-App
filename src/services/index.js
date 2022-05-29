@@ -1,4 +1,4 @@
-import useServiceProducts from "./useServiceProducts";
-import useServiceSearch from "./useServiceSearch";
+import serviceProducts from "./serviceProducts";
+import serviceSearch from "./serviceSearch";
 
-export { useServiceProducts, useServiceSearch };
+export { serviceProducts, serviceSearch };

@@ -1,7 +1,7 @@
-import { useGetHomeImages } from "../../hooks";
+import { getImages } from "../../utils/products";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
-const { danhchoban, phobien, yeuthich } = useGetHomeImages();
+const { danhchoban, phobien, yeuthich } = getImages();
 
 export const homeHeaderContent = [
   {

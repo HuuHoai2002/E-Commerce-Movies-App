@@ -6,7 +6,7 @@ import { SearchModal } from "../../components/searchModal";
 import { useClickOutSide, useSearchKeyword } from "../../hooks";
 import SearchContent from "./SearchContent";
 
-const Search = () => {
+const HeaderSearch = () => {
   const { show, setShow, nodeRef } = useClickOutSide("div");
   const [values, setValues] = useState("");
   const inputRef = useRef();
@@ -38,12 +38,13 @@ const Search = () => {
             ref={inputRef}
           />
           <div className="search-modal">
-            {!!show && (
+            {show && (
               <SearchModal top="43px" show={show}>
                 <SearchContent
                   movies={data}
                   loading={loading}
                   keyword={values}
+                  setShow={setShow}
                 />
               </SearchModal>
             )}
@@ -62,4 +63,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default HeaderSearch;

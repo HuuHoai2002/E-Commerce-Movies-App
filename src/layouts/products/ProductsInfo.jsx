@@ -1,9 +1,9 @@
 import { Heading } from "../../components/heading";
 import { Tooltip } from "../../components/tooltip";
-import { useGetVoteStar } from "../../hooks";
+import { getVoteStar } from "../../utils/products";
 
 const ProductsInfo = ({ data }) => {
-  const { renderStars } = useGetVoteStar();
+  const { renderStars } = getVoteStar();
   return (
     <div className="">
       <div className="w-full flex flex-col gap-y-3">

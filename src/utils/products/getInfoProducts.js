@@ -1,6 +1,6 @@
-import { defaultPrice, priceFlashSale } from "../config/products/products";
+import { defaultPrice, priceFlashSale } from "../../config/products/products";
 
-const useGetInfoProducts = () => {
+const getInfoProducts = () => {
   const getDiscount = (data) => {
     return (data * 3).toFixed();
   };
@@ -35,4 +35,4 @@ const useGetInfoProducts = () => {
   };
 };
 
-export default useGetInfoProducts;
+export default getInfoProducts;

@@ -1,12 +1,13 @@
 import { Image } from "../../components/image";
 import { image_url_with_size } from "../../config/api/apiProducts";
-import { useGetInfoProducts, useGetVoteStar, useNavigation } from "../../hooks";
+import { getInfoProducts, getVoteStar, navigation } from "../../utils/products";
+
 import { Href } from "../components/href";
 
 const ProductItemSmall = ({ data }) => {
-  const { renderStars } = useGetVoteStar();
-  const { getPrice, getDiscount } = useGetInfoProducts();
-  const { detailsPage } = useNavigation();
+  const { renderStars } = getVoteStar();
+  const { getPrice, getDiscount } = getInfoProducts();
+  const { detailsPage } = navigation();
 
   // const handleCheckMediaType = (media_type = "") => {
   //   if (media_type.includes("movie")) {

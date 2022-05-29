@@ -1,10 +1,10 @@
 import { Image } from "../../components/image";
 import { contents, image_url_original } from "../../config/api/apiProducts";
-import { useFetchingDataWithContent } from "../../hooks";
+import { useFetchingContent } from "../../hooks";
 
 const Review = ({ id, title = "Đánh Giá - Nhận Xét Từ Khách Hàng" }) => {
   //reviews
-  const { data: reviews } = useFetchingDataWithContent(id, contents.REVIEWS);
+  const { data: reviews } = useFetchingContent(id, contents.REVIEWS);
 
   const checkUrl = (url = "") => {
     return url.includes("https://", 1);

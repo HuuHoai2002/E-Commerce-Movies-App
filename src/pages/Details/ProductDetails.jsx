@@ -4,15 +4,15 @@ import { Button } from "../../components/button";
 import { Image } from "../../components/image";
 import { QuantityInput } from "../../components/quantityInput";
 import { image_url_with_size } from "../../config/api/apiProducts";
-import { useGetInfoProducts } from "../../hooks";
 import { Container } from "../../layouts/components/container";
 import { Flex } from "../../layouts/components/flex";
 import { View } from "../../layouts/components/view";
 import { ProductInfo } from "../../layouts/products";
-import Review from "../../layouts/reviews/Review";
+import { Review } from "../../layouts/reviews";
 import { SimilarProduct } from "../../layouts/similar";
-import { useServiceProducts } from "../../services";
+import { serviceProducts } from "../../services";
 import { setTitle } from "../../utils";
+import { getInfoProducts } from "../../utils/products";
 
 const ProductDetails = () => {
   //get url params: id and type
@@ -20,14 +20,14 @@ const ProductDetails = () => {
   const id = params.get("id");
   // const type = params.get("type");
 
-  const { getDiscount, getPrice, getRootPrice } = useGetInfoProducts();
-  const { getMovieDetails } = useServiceProducts();
+  const { getDiscount, getPrice, getRootPrice } = getInfoProducts();
+  const { getProductsDetails } = serviceProducts();
   const [movieInfo, setMovieInfo] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getMovieDetails(id);
+        const response = await getProductsDetails(id);
         const newResponse = {
           ...response,
           price: getPrice(response.vote_average, false),
@@ -48,7 +48,7 @@ const ProductDetails = () => {
   const [values, setValues] = useState(1);
 
   return (
-    <Container minHeight="100%">
+    <Container>
       {movieInfo && (
         <Fragment>
           <Flex radius="4px">

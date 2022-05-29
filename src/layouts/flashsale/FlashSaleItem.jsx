@@ -1,11 +1,11 @@
 import { Image } from "../../components/image";
 import { image_url_with_size } from "../../config/api/apiProducts";
-import { useGetInfoProducts, useNavigation } from "../../hooks";
+import { getInfoProducts, navigation } from "../../utils/products";
 import { Href } from "../components/href";
 
 const FlashSaleItem = ({ data }) => {
-  const { getDiscount, getPrice, getSold } = useGetInfoProducts();
-  const { detailsPage } = useNavigation();
+  const { getDiscount, getPrice, getSold } = getInfoProducts();
+  const { detailsPage } = navigation();
 
   return (
     <div className="flash-sale-item cursor-pointer pb-3 px-3 hover:use-shadow">

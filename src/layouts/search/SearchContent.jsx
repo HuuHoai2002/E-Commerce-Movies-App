@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Image } from "../../components/image";
-import { useGetHomeImages, useNavigation } from "../../hooks";
+import { getImages, navigation } from "../../utils/products";
 
-const SearchContent = ({ movies, loading, keyword }) => {
-  const { search } = useGetHomeImages();
-  const { searchKeyword } = useNavigation();
+const SearchContent = ({ movies, loading, keyword, setShow }) => {
+  const { search } = getImages();
+  const { searchKeyword } = navigation();
   return (
     <div className="">
       <div className="flex flex-col justify-center">
@@ -24,14 +24,19 @@ const SearchContent = ({ movies, loading, keyword }) => {
                 <div className="w-full flex flex-col">
                   {movies.map((item) => (
                     <div
-                      className="px-2 py-1 bg-white hover:bg-cbg hover:opacity-60 transition-all"
+                      className="px-2 py-1 bg-white hover:bg-cbg hover:opacity-80"
                       key={item.id}>
-                      <span className="text-sm">{item.title}</span>
+                      <Link
+                        to={searchKeyword(item.title || item.name)}
+                        className="text-sm"
+                        onClick={() => setShow(false)}>
+                        {item.title || item.name}
+                      </Link>
                     </div>
                   ))}
                 </div>
               </div>
-          ) : (
+            ) : (
               <div>
                 {keyword ? (
                   <div className="p-2 font-medium text-ctext">

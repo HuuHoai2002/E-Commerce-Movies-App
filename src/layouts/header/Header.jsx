@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Cart } from "../cart";
-import { Search } from "../search";
+import { HeaderSearch } from "../search";
 import { User } from "../user";
 
 const Header = () => {
@@ -17,7 +17,7 @@ const Header = () => {
         <div className="flex-1 flex flex-col gap-y-2">
           <div className="flex-1 flex items-center justify-center gap-x-5">
             <div className="flex-1 max-w-[746px]">
-              <Search />
+              <HeaderSearch />
             </div>
             <User />
           </div>

@@ -1,12 +1,12 @@
 import { Image } from "../../components/image";
 import { image_url_with_size } from "../../config/api/apiProducts";
-import { useGetInfoProducts, useGetVoteStar, useNavigation } from "../../hooks";
+import { getInfoProducts, getVoteStar, navigation } from "../../utils/products";
 import { Href } from "../components/href";
 
-const ProductItem = ({ data, isTv }) => {
-  const { renderStars } = useGetVoteStar();
-  const { getDiscount, getPrice } = useGetInfoProducts();
-  const { detailsPage } = useNavigation();
+const ProductItem = ({ data }) => {
+  const { renderStars } = getVoteStar();
+  const { getDiscount, getPrice } = getInfoProducts();
+  const { detailsPage } = navigation();
 
   return (
     <Href to={detailsPage(data.title || data.name, data.id)}>

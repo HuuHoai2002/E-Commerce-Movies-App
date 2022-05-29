@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useServiceProducts } from "../services";
+import { serviceProducts } from "../services";
 
 export default function useFetchingData(categories, page = 1) {
-  const { getMovies } = useServiceProducts();
+  const { getProducts } = serviceProducts();
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ export default function useFetchingData(categories, page = 1) {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await getMovies(categories, page);
+        const response = await getProducts(categories, page);
         response && setData(response.results);
         setLoading(false);
       } catch (error) {

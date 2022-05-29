@@ -1,6 +1,6 @@
-import { IStar } from "../components/icons";
+import { IStar } from "../../components/icons";
 
-const useGetVoteStar = () => {
+const getVoteStar = () => {
   const getStarsQuantity = (vote = 0) => {
     let stars = 0;
     if (vote > 0) {
@@ -36,4 +36,4 @@ const useGetVoteStar = () => {
   };
 };
 
-export default useGetVoteStar;
+export default getVoteStar;

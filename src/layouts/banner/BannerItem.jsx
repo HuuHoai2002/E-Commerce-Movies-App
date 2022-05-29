@@ -2,11 +2,11 @@ import { forwardRef } from "react";
 import { IArrowsNext, IArrowsPrev } from "../../components/icons";
 import { Image } from "../../components/image";
 import { image_url_original } from "../../config/api/apiProducts";
-import { useNavigation } from "../../hooks";
+import { navigation } from "../../utils/products";
 import { Href } from "../components/href";
 
 const BannerItem = forwardRef(({ data }, ref) => {
-  const { detailsPage } = useNavigation();
+  const { detailsPage } = navigation();
   return (
     <div className="w-full rounded-md relative group cursor-pointer">
       <Href to={detailsPage(data.title || data.name, data.id)}>

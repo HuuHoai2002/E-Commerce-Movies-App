@@ -1,7 +1,8 @@
-import { routes } from "../config/routes";
-import { useSlugify } from "../hooks";
+import { routes } from "../../config/routes";
+import { useSlugify } from "../../hooks";
 
-const useNavigation = () => {
+const navigation = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { handleSlug } = useSlugify();
 
   const detailsPage = (slug, id = "") => {
@@ -16,4 +17,4 @@ const useNavigation = () => {
   return { detailsPage, searchKeyword };
 };
 
-export default useNavigation;
+export default navigation;

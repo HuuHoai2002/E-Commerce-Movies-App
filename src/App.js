@@ -10,6 +10,7 @@ const ProductDetails = React.lazy(() =>
 );
 const Footer = React.lazy(() => import("./layouts/footer/Footer"));
 const NotFound = React.lazy(() => import("./pages/NotFound/NotFound"));
+const Search = React.lazy(() => import("./pages/Search/Search"));
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             path={`${routes.details}/:slug`}
             element={<ProductDetails />}
           />
+          <Route path={`${routes.search}`} element={<Search />} />
           {/* <Route path={`${routes.cart}`} element={<CartPage />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
