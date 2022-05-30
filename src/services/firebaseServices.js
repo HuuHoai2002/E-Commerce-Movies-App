@@ -4,14 +4,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import {
-  collection,
-  doc,
-  onSnapshot,
-  serverTimestamp,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { auth, db } from "../firebase/firebase-config";
 
@@ -78,38 +71,15 @@ const firebaseServices = () => {
   //   });
   // }
 
-  function getDataWithUserId(collectionName = "", userId = "") {
-    const docRef = doc(db, collectionName, userId);
-    const data = onSnapshot(docRef, (doc) => doc.data());
-
-    return data;
-  }
-
   async function updateDataWithUserId(collectionName = "", userId = "", data) {
     const docRef = doc(db, collectionName, userId);
     await updateDoc(docRef, { ...data, updateAt: serverTimestamp() });
-  }
-
-  function getAllDataWithCollection(collectionName = "") {
-    let results = [];
-    const colRef = collection(db, collectionName);
-    onSnapshot(colRef, (snapShot) => {
-      snapShot.forEach((doc) => {
-        results.push({
-          id: doc.id,
-          ...doc.data(),
-        });
-      });
-    });
-    return results;
   }
 
   return {
     createAccount,
     signInAccount,
     signOutAccount,
-    getDataWithUserId,
-    getAllDataWithCollection,
     updateDataWithUserId,
   };
 };
