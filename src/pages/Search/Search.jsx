@@ -1,5 +1,4 @@
 import { useSearchParams } from "react-router-dom";
-// import { useSearchKeyword } from "../../hooks";
 import { Button } from "../../components/button";
 import { Image } from "../../components/image";
 import { useSearchProducts } from "../../hooks";
@@ -22,7 +21,7 @@ const Search = () => {
           {data.length > 0 ? (
             <div>
               <div className="py-3 text-xl font-medium flex items-center gap-x-2">
-                Kết quả cho từ khóa :
+                Kết quả tìm kiếm cho từ khóa :
                 <span className="text-medium text-cblue">"{keyword}"</span>
               </div>
               <div className="bg-white min-h-screen relative">
@@ -51,7 +50,7 @@ const Search = () => {
                   </div>
                   <span className="text-xl flex items-center gap-x-2">
                     <span className="">
-                      Không có kết quản tìm kiếm cho từ khóa
+                      Anh bạn à, Không có kết quản tìm kiếm cho từ khóa
                     </span>
                     <span className="text-medium text-cblue">"{keyword}"</span>
                   </span>

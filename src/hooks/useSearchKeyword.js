@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { serviceSearch } from "../services";
+import { searchServices } from "../services";
 
 export default function useSearchKeyword(keyword = "", language = "vi") {
-  const { searchKeywords } = serviceSearch();
+  const { searchKeywords } = searchServices();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 

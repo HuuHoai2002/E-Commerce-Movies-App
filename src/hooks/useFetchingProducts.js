@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { serviceProducts } from "../services";
+import { productsServices } from "../services";
 
 export default function useFetchingProducts(categories, page = 1) {
-  const { getProducts } = serviceProducts();
+  const { getProducts } = productsServices();
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

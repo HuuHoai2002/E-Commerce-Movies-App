@@ -23,10 +23,11 @@ const SearchContent = ({ movies, loading, keyword, setShow }) => {
                 </Link> */}
                 <div className="w-full flex flex-col">
                   {movies.map((item) => (
-                    <Link to={searchKeyword(item.title || item.name)}>
+                    <Link
+                      to={searchKeyword(item.title || item.name)}
+                      key={item.id}>
                       <div
                         className="px-3 py-2 bg-white hover:bg-cbg hover:opacity-80"
-                        key={item.id}
                         onClick={() => setShow(false)}>
                         <span className="text-sm">
                           {item.title || item.name}

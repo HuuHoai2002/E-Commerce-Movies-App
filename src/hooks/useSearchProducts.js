@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { serviceSearch } from "../services";
+import { searchServices } from "../services";
 
 export default function useSearchProducts(keyword = "", language = "vi") {
-  const { searchProducts } = serviceSearch();
+  const { searchProducts } = searchServices();
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -15,8 +15,11 @@ export default function useSearchProducts(keyword = "", language = "vi") {
   }, []);
 
   useEffect(() => {
-    setData([]);
-    setPage(1);
+    if (page > 1) {
+      setData([]);
+      setPage(1);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   useEffect(() => {

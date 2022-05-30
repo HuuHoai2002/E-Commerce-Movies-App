@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import { serviceProducts } from "../services";
+import { productsServices } from "../services";
 
 export default function useFetchingProductsWithLoadMore(Categories) {
-  const { getProducts } = serviceProducts();
+  const { getProducts } = productsServices();
   const [data, setData] = useState([]);
   const [categoryActive, setCategoryActive] = useState(0);
   const [page, setPage] = useState(1);

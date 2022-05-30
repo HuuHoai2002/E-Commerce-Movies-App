@@ -1,7 +1,7 @@
 import { api_key } from "../config/api/apiProducts";
 import axiosClient from "./axiosClient";
 
-const serviceSearch = () => {
+const searchServices = () => {
   async function searchKeywords(params) {
     return await axiosClient.get(`/search/keyword?api_key=${api_key}`, {
       params,
@@ -17,4 +17,4 @@ const serviceSearch = () => {
   return { searchKeywords, searchProducts };
 };
 
-export default serviceSearch;
+export default searchServices;

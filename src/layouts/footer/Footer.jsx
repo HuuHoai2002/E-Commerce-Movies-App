@@ -33,7 +33,7 @@ const Footer = () => {
             </Grid>
           </div>
         </div>
-        <div className="footer-info py-4 bg-white">
+        <div className="footer-info py-5 bg-white">
           <div className="max-w-[1360px] mx-auto px-[60px]">
             <Grid col="4">
               {footerInfo.map((item) => (

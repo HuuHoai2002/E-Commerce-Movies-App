@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { serviceProducts } from "../services";
+import { productsServices } from "../services";
 
 export default function useFetchingContent(
   id,
   contents,
   language = "en"
 ) {
-  const { getProductsContent } = serviceProducts();
+  const { getProductsContent } = productsServices();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 

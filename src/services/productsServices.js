@@ -1,7 +1,7 @@
 import axios from "axios";
 import { api_key, base_url } from "../config/api/apiProducts";
 
-const serviceProducts = () => {
+const productsServices = () => {
   async function getProducts(category = "", page = 1, language = "vi") {
     return await (
       await axios.get(
@@ -33,4 +33,4 @@ const serviceProducts = () => {
   };
 };
 
-export default serviceProducts;
+export default productsServices;

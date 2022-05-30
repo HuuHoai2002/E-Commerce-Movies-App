@@ -1,9 +1,20 @@
+import { useCallback, useState } from "react";
 import { Heading } from "../../components/heading";
+import { ModalPopup } from "../../components/modal";
 import { Tooltip } from "../../components/tooltip";
 import { getVoteStar } from "../../utils/products";
+import { ModalWraps } from "../components/modalWraps";
 
 const ProductsInfo = ({ data }) => {
   const { renderStars } = getVoteStar();
+  const [open, setOpen] = useState(false);
+  const handleOpen = useCallback(() => {
+    setOpen(true);
+  }, []);
+  const handleClose = useCallback(() => {
+    setOpen(false);
+  }, []);
+
   return (
     <div className="">
       <div className="w-full flex flex-col gap-y-3">
@@ -22,8 +33,17 @@ const ProductsInfo = ({ data }) => {
                 (Xem đánh giá)
               </span>
               <span className="min-h-full w-[1px] bg-cbg"></span>
-              <span className="text-cblue font-medium">
+              <span
+                className="text-cblue font-medium cursor-pointer"
+                title={`Số sản phẩm đã bán ${data.vote_count}`}>
                 Đã bán {data.vote_count}
+              </span>
+              <span className="min-h-full w-[1px] bg-cbg"></span>
+              <span
+                className="text-cblue font-medium cursor-pointer"
+                title="Xem trailer"
+                onClick={handleOpen}>
+                Trailer
               </span>
             </div>
           </div>
@@ -89,6 +109,13 @@ const ProductsInfo = ({ data }) => {
                 </tr>
               </tbody>
             </table>
+            <ModalPopup open={open} handleClose={handleClose}>
+              <ModalWraps>
+                <div className="bg-cbg w-full max-w-[800px] border-none p-3 rounded-md">
+                  Có cái nịt trailer á bạn ơi , bỏ tiền ra mua đê :)))
+                </div>
+              </ModalWraps>
+            </ModalPopup>
           </div>
         </div>
         <div className="w-full h-[1px] bg-cbg my-3 leading-none"></div>

@@ -1,4 +1,4 @@
-import serviceProducts from "./serviceProducts";
-import serviceSearch from "./serviceSearch";
+import productsServices from "./productsServices";
+import searchServices from "./searchServices";
 
-export { serviceProducts, serviceSearch };
+export { productsServices, searchServices };

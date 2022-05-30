@@ -6,6 +6,7 @@ import IStar from "./Star";
 import ITime from "./Time";
 import ITimes from "./Times";
 import IUser from "./User";
+import IPlay from "./Play"
 
 export {
   ISearch,
@@ -16,4 +17,5 @@ export {
   IArrowsPrev,
   ITime,
   ITimes,
+  IPlay,
 };

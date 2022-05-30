@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "../../components/button";
+import { IPlay } from "../../components/icons";
 import { Image } from "../../components/image";
 import { QuantityInput } from "../../components/quantityInput";
 import { image_url_with_size } from "../../config/api/apiProducts";
@@ -11,7 +12,6 @@ import { View } from "../../layouts/components/view";
 import { ProductInfo } from "../../layouts/products";
 import { Review } from "../../layouts/reviews";
 import { SimilarProduct } from "../../layouts/similar";
-
 const ProductDetails = () => {
   //get url params: id and type
   const [params] = useSearchParams();
@@ -29,11 +29,14 @@ const ProductDetails = () => {
           <Flex radius="4px">
             <div className="max-w-[460px] py-4 pl-4">
               <View>
-                <div className="">
+                <div className="relative group cursor-pointer">
                   <Image
                     src={`${image_url_with_size}${data.poster_path}`}
                     className="rounded-none"
                   />
+                  <div className="opacity-0 absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 group-hover:opacity-100 transition-all">
+                    <IPlay fill="white" />
+                  </div>
                 </div>
               </View>
             </div>
