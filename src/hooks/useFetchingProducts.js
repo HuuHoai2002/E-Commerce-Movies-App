@@ -13,9 +13,10 @@ export default function useFetchingProducts(categories, page = 1) {
         setLoading(true);
         const response = await getProducts(categories, page);
         response && setData(response.results);
-        setLoading(false);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();

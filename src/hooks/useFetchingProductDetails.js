@@ -23,9 +23,10 @@ export default function useFetchingProductDetails(id) {
         };
         newResponse && setData(newResponse);
         setTitle(newResponse.title || newResponse.name);
-        setLoading(false);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();

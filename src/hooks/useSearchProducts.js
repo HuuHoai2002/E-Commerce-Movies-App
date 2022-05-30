@@ -19,7 +19,7 @@ export default function useSearchProducts(keyword = "", language = "vi") {
       setData([]);
       setPage(1);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   useEffect(() => {
@@ -34,9 +34,10 @@ export default function useSearchProducts(keyword = "", language = "vi") {
         page !== 1
           ? setData((moviesPrev) => [...moviesPrev, ...response.results])
           : setData(response.results);
-        setLoading(false);
       } catch (error) {
         console.log("Error: ", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();

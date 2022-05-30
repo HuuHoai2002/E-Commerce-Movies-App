@@ -1,3 +1,3 @@
-import Cart from "./Cart";
+import HeaderCart from "./HeaderCart";
 
-export { Cart };
+export { HeaderCart };

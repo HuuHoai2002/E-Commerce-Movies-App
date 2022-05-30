@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Image } from "../../components/image";
+import { Loading } from "../../components/loading";
 import { getImages, navigation } from "../../utils/products";
 
 const SearchContent = ({ movies, loading, keyword, setShow }) => {
@@ -10,7 +11,7 @@ const SearchContent = ({ movies, loading, keyword, setShow }) => {
     <div className="">
       <div className="flex flex-col justify-center">
         {loading ? (
-          <div className="w-10 h-10 rounded-full border-2 border-cblue border-t-transparent transition-all animation-spin"></div>
+          <Loading />
         ) : (
           <div className="">
             {movies.length > 0 ? (

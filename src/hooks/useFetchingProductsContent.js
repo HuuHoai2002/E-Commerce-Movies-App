@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { productsServices } from "../services";
 
-export default function useFetchingContent(
-  id,
-  contents,
-  language = "en"
-) {
+export default function useFetchingContent(id, contents, language = "en") {
   const { getProductsContent } = productsServices();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,9 +12,10 @@ export default function useFetchingContent(
         setLoading(true);
         const response = await getProductsContent(contents, id, language);
         response && setData(response.results);
-        setLoading(false);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();

@@ -15,9 +15,10 @@ export default function useSearchKeyword(keyword = "", language = "vi") {
           language,
         });
         response && setData(response.results);
-        setLoading(false);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     if (keyword) {

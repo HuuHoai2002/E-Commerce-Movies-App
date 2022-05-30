@@ -27,9 +27,10 @@ export default function useFetchingProductsWithLoadMore(Categories) {
         page !== 1
           ? setData((moviesPrev) => [...moviesPrev, ...response.results])
           : setData(response.results);
-        setLoading(false);
       } catch (error) {
         console.log("Error: ", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();

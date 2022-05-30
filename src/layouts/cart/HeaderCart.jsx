@@ -1,4 +1,4 @@
-const Cart = () => {
+const HeaderCart = () => {
   const quantity = "5";
   return (
     <div className="text-white hover:opacity-90 cursor-pointer transition-all">
@@ -21,4 +21,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default HeaderCart;
