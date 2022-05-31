@@ -18,21 +18,22 @@ const firebaseServices = () => {
       // thêm dữ liệu vào collection users mỗi khi tạo mới một user
       const newUsersRef = doc(db, "users", auth.currentUser.uid);
       await setDoc(newUsersRef, {
-        userName: fullname,
+        userid: auth.currentUser.uid,
+        username: fullname,
         email,
         password,
-        userId: auth.currentUser.uid,
       });
       // thêm dũ liệu vào collection cart mỗi khi tạo mới 1 user
       const newCartRef = doc(db, "cart", auth.currentUser.uid);
       await setDoc(newCartRef, {
-        products: {
-          userId: auth.currentUser.uid,
-          userName: auth.currentUser.displayName,
-          cartItems: [],
-          quantity: 0,
-          createdAt: serverTimestamp(),
+        userid: auth.currentUser.uid,
+        username: auth.currentUser.displayName,
+        orders: {
+          items: [],
+          total: 0,
+          created_at: serverTimestamp(),
         },
+        completed_orders: [],
       });
       toast.success("Đăng ký tài khoản thành công", { pauseOnHover: false });
     } catch (error) {

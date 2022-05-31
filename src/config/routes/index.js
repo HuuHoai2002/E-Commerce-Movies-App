@@ -2,7 +2,8 @@ export const routes = {
   home: "/",
   details: "details",
   user: "user",
-  login: "login",
+  signin: "signin",
+  signup: "signup",
   cart: "cart",
-  search: "search"
+  search: "search",
 };

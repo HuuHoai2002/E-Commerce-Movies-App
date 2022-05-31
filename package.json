@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@hookform/resolvers": "^2.8.10",
     "@mui/material": "^5.8.1",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
@@ -14,11 +15,14 @@
     "dots-env": "^1.1.5",
     "firebase": "^9.6.10",
     "formik": "^2.2.9",
+    "install": "^0.13.0",
     "lodash": "^4.17.21",
+    "npm": "^8.11.0",
     "prop-types": "^15.8.1",
     "query-string": "^7.1.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-hook-form": "^7.31.3",
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
@@ -31,7 +35,8 @@
     "swr": "^1.2.2",
     "tailwindcss": "^3.0.23",
     "uuid": "^8.3.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
