@@ -8,6 +8,7 @@ import { routes } from "./config/routes";
 import { auth } from "./firebase/firebase-config";
 import { Scroll } from "./layouts/components/scroll";
 import { Header } from "./layouts/header";
+import { ProtectedRoute } from "./utils/routes";
 
 const HomePage = React.lazy(() => import("./pages/Home/Home"));
 const ProductDetails = React.lazy(() =>
@@ -52,7 +53,14 @@ const App = () => {
           <Route path={`${routes.search}`} element={<Search />} />
           <Route path={`${routes.cart}`} element={<Cart />} />
           <Route path={`${routes.signup}`} element={<Signup />} />
-          <Route path={`${routes.signin}`} element={<Signin />} />
+          <Route
+            path={`${routes.signin}`}
+            element={
+              <ProtectedRoute>
+                <Signin />
+              </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

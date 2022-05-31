@@ -8,6 +8,7 @@ import { Button } from "../../components/form/button";
 import { Input } from "../../components/form/input";
 import { Label } from "../../components/form/label";
 import { routes } from "../../config/routes";
+import { useGetParamsUrl } from "../../hooks";
 import { Container } from "../../layouts/components/container";
 import { firebaseServices } from "../../services";
 
@@ -27,6 +28,8 @@ const schema = yup
 const Signin = () => {
   const { signInAccount } = firebaseServices();
   const navigate = useNavigate();
+  const { url: from } = useGetParamsUrl("from");
+
   const {
     handleSubmit,
     control,
@@ -41,17 +44,24 @@ const Signin = () => {
     },
   });
   useEffect(() => {
-    const arrErroes = Object.values(errors);
-    if (arrErroes.length > 0) {
-      toast.error(arrErroes[0]?.message, {
+    const arrErrors = Object.values(errors);
+    if (arrErrors.length > 0) {
+      toast.error(arrErrors[0]?.message, {
         pauseOnHover: false,
         delay: 0,
       });
     }
   }, [errors]);
+
+  // console.log(from.slice())
   const onSubmitHandler = async (values) => {
     if (!isValid) return;
     await signInAccount(values.email, values.password);
+    if (from !== null) {
+      navigate(`/${from}`);
+    } else {
+      navigate(`${routes.home}`);
+    }
     if (isSubmitSuccessful) {
       reset({
         email: "",
@@ -59,6 +69,7 @@ const Signin = () => {
       });
     }
   };
+
   return (
     <Container>
       <form

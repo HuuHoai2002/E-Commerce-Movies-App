@@ -4,6 +4,8 @@ import useFetchingProductDetails from "./useFetchingProductDetails";
 import useFetchingProducts from "./useFetchingProducts";
 import useFetchingProductsContent from "./useFetchingProductsContent";
 import useFetchingProductsWithLoadMore from "./useFetchingProductsWithLoadMore";
+import useGetAuth from "./useGetAuth";
+import useGetParamsUrl from "./useGetParamsUrl";
 import useHover from "./useHover";
 import useSearchKeyword from "./useSearchKeyword";
 import useSearchProducts from "./useSearchProducts";
@@ -16,6 +18,8 @@ export {
   useHover,
   useToggle,
   useSlugify,
+  useGetAuth,
+  useGetParamsUrl,
   useFetchingProducts,
   useFetchingProductsWithLoadMore,
   useFetchingProductsContent,

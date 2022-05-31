@@ -1,15 +1,13 @@
-import { useSearchParams } from "react-router-dom";
 import { Button } from "../../components/button";
 import { Image } from "../../components/image";
-import { useSearchProducts } from "../../hooks";
+import { useGetParamsUrl, useSearchProducts } from "../../hooks";
 import { Container } from "../../layouts/components/container";
 import { Grid } from "../../layouts/components/grid";
 import { ProductItem } from "../../layouts/products";
 import { getImages } from "../../utils/products";
 
 const Search = () => {
-  const [params] = useSearchParams();
-  const keyword = params.get("keyword");
+  const { url: keyword } = useGetParamsUrl("keyword");
 
   const { data, handleNextPage, loading } = useSearchProducts(keyword);
   const { search } = getImages();

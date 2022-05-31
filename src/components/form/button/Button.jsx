@@ -7,9 +7,9 @@ const ButtonStyles = styled.button`
   padding: 0 25px;
   line-height: 1;
   border-radius: 4px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
-  height: ${(props) => props.height || "60px"};
+  height: ${(props) => props.height || "55px"};
   color: white;
   display: flex;
   justify-content: center;
