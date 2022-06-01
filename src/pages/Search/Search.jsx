@@ -8,7 +8,6 @@ import { getImages } from "../../utils/products";
 
 const Search = () => {
   const { url: keyword } = useGetParamsUrl("keyword");
-
   const { data, handleNextPage, loading } = useSearchProducts(keyword);
   const { search } = getImages();
 

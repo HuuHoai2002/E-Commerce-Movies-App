@@ -2,7 +2,7 @@
 
 const QuantityInput = ({
   title = "Số lượng",
-  values,
+  values = 1,
   setValues,
   disabledSelect = false,
 }) => {

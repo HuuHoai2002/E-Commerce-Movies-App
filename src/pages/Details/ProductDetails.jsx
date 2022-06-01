@@ -1,14 +1,12 @@
-import { Fragment, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { Fragment } from "react";
 import { Button } from "../../components/button";
 import { IPlay } from "../../components/icons";
 import { Image } from "../../components/image";
 import { QuantityInput } from "../../components/quantityInput";
 import { image_url_with_size } from "../../config/api/apiProducts";
-import { routes } from "../../config/routes";
 import {
+  useBackToPage,
   useFetchingProductDetails,
-  useGetAuth,
   useGetParamsUrl,
 } from "../../hooks";
 import { Container } from "../../layouts/components/container";
@@ -21,14 +19,14 @@ import { SimilarProduct } from "../../layouts/similar";
 const ProductDetails = () => {
   const { url: id } = useGetParamsUrl("id");
   const { data } = useFetchingProductDetails(id);
-  const { auth } = useGetAuth();
-  const navigate = useNavigate();
+  const { handleBackToPage, isLogin } = useBackToPage(window.location.href);
 
-  const handleCheckLogin = useCallback(() => {
-    if (!auth.is_login) {
-      navigate(`/${routes.signin}?from=${window.location.href}`);
+  const handleClick = () => {
+    handleBackToPage();
+    if (isLogin) {
+      console.log("is login");
     }
-  }, [auth.is_login, navigate]);
+  };
 
   return (
     <Container>
@@ -59,14 +57,14 @@ const ProductDetails = () => {
                       className="!min-w-[300px] !min-h-[48px] !rounded hover:!opacity-80"
                       title="Mua hàng"
                       activeHover={true}
-                      onClick={handleCheckLogin}
+                      onClick={handleClick}
                     />
                     <Button
                       className="!min-w-[200px] !min-h-[48px] !bg-transparent !rounded"
                       title="Thêm vào giỏ hàng"
                       activeHover={false}
                       activeBorder={true}
-                      onClick={handleCheckLogin}
+                      onClick={handleClick}
                     />
                   </div>
                 </div>

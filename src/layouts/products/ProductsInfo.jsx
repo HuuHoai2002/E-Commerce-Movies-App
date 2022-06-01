@@ -29,9 +29,11 @@ const ProductsInfo = ({ data }) => {
           <div className="flex items-center gap-x-3">
             <div>{renderStars(data.vote_average)}</div>
             <div className="flex justify-between gap-x-3 text-ctext text-[15px]">
-              <span className="cursor-pointer leading-5 hover:opacity-80">
+              <a
+                href="#reviews"
+                className="cursor-pointer leading-5 hover:opacity-80">
                 (Xem đánh giá)
-              </span>
+              </a>
               <span className="min-h-full w-[1px] bg-cbg"></span>
               <span
                 className="text-cblue font-medium cursor-pointer"

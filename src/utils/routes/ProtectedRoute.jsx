@@ -10,9 +10,10 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     if (auth.is_login) {
       navigate(`${routes.home}`);
+      return;
     }
   }, [auth.is_login, navigate]);
-
+  
   return children;
 };
 

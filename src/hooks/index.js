@@ -1,3 +1,4 @@
+import useBackToPage from "./useBackToPage";
 import useChangePage from "./useChangePage";
 import useClickOutSide from "./useClickOutSide";
 import useFetchingProductDetails from "./useFetchingProductDetails";
@@ -21,6 +22,7 @@ export {
   useSlugify,
   useGetAuth,
   useGetParamsUrl,
+  useBackToPage,
   useFetchingProducts,
   useFetchingProductsWithLoadMore,
   useFetchingProductsContent,
