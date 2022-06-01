@@ -1,5 +1,5 @@
 const HeaderCart = () => {
-  const quantity = "5";
+  const quantity = "0";
   return (
     <div className="text-white hover:opacity-90 cursor-pointer transition-all">
       <div className="flex items-center gap-x-2">

@@ -5,6 +5,7 @@ import useFetchingProducts from "./useFetchingProducts";
 import useFetchingProductsContent from "./useFetchingProductsContent";
 import useFetchingProductsWithLoadMore from "./useFetchingProductsWithLoadMore";
 import useGetAuth from "./useGetAuth";
+import useGetDataWithUserId from "./useGetDataWithUserId";
 import useGetParamsUrl from "./useGetParamsUrl";
 import useHover from "./useHover";
 import useSearchKeyword from "./useSearchKeyword";
@@ -26,4 +27,5 @@ export {
   useFetchingProductDetails,
   useSearchKeyword,
   useSearchProducts,
+  useGetDataWithUserId,
 };

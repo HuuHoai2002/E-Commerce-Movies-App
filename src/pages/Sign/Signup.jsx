@@ -8,6 +8,7 @@ import { Button } from "../../components/form/button";
 import { Input } from "../../components/form/input";
 import { Label } from "../../components/form/label";
 import { routes } from "../../config/routes";
+import { useGetParamsUrl } from "../../hooks";
 import { Container } from "../../layouts/components/container";
 import { firebaseServices } from "../../services";
 
@@ -34,6 +35,7 @@ const schema = yup
 
 const Signup = () => {
   const { createAccount } = firebaseServices();
+  const { url: from } = useGetParamsUrl("from");
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -60,15 +62,25 @@ const Signup = () => {
   }, [errors]);
   const onSubmitHandler = async (values) => {
     if (!isValid) return;
-    await createAccount(values.email, values.password, values.username);
-    if (isSubmitSuccessful) {
-      reset({
-        username: "",
-        email: "",
-        password: "",
-      });
+    try {
+      await createAccount(values.email, values.password, values.username);
+      if (from !== null) {
+        navigate(`${from.replace("http://" + window.location.host, "")}`);
+      } else {
+        navigate(`${routes.home}`);
+      }
+      if (isSubmitSuccessful) {
+        reset({
+          username: "",
+          email: "",
+          password: "",
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
+
   return (
     <Container>
       <form
@@ -115,7 +127,13 @@ const Signup = () => {
           <Label className="!cursor-default">Bạn đã có tài khoản?</Label>
           <Label
             className="!text-cblue font-medium"
-            onClick={() => navigate(`/${routes.signin}`)}>
+            onClick={() => {
+              if (from !== null) {
+                navigate(`/signin?from=${from}`);
+              } else {
+                navigate(`/signin`);
+              }
+            }}>
             Đăng nhập ngay
           </Label>
         </div>

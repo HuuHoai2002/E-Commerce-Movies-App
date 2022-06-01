@@ -12,6 +12,7 @@ const ProtectedRoute = ({ children }) => {
       navigate(`${routes.home}`);
     }
   }, [auth.is_login, navigate]);
+
   return children;
 };
 

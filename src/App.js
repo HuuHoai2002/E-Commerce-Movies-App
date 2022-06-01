@@ -15,11 +15,11 @@ const ProductDetails = React.lazy(() =>
   import("./pages/Details/ProductDetails")
 );
 const Footer = React.lazy(() => import("./layouts/footer/Footer"));
-const NotFound = React.lazy(() => import("./pages/NotFound/NotFound"));
 const Search = React.lazy(() => import("./pages/Search/Search"));
 const Cart = React.lazy(() => import("./pages/Cart/Cart"));
 const Signup = React.lazy(() => import("./pages/Sign/Signup"));
 const Signin = React.lazy(() => import("./pages/Sign/Signin"));
+const NotFound = React.lazy(() => import("./pages/NotFound/NotFound"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const App = () => {
         dispatch(
           signIn({
             email: userAuth.email,
-            uid: userAuth.uid,
+            userId: userAuth.uid,
             displayName: userAuth.displayName,
             photoUrl: userAuth.photoURL,
           })

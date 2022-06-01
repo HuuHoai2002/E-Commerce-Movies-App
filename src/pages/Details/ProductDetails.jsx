@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/button";
 import { IPlay } from "../../components/icons";
@@ -24,11 +24,11 @@ const ProductDetails = () => {
   const { auth } = useGetAuth();
   const navigate = useNavigate();
 
-  const handleCheckLogin = () => {
+  const handleCheckLogin = useCallback(() => {
     if (!auth.is_login) {
       navigate(`/${routes.signin}?from=${window.location.href}`);
     }
-  };
+  }, [auth.is_login, navigate]);
 
   return (
     <Container>

@@ -52,24 +52,26 @@ const Signin = () => {
       });
     }
   }, [errors]);
-
-  // console.log(from.slice())
+  
   const onSubmitHandler = async (values) => {
     if (!isValid) return;
-    await signInAccount(values.email, values.password);
-    if (from !== null) {
-      navigate(`/${from}`);
-    } else {
-      navigate(`${routes.home}`);
-    }
-    if (isSubmitSuccessful) {
-      reset({
-        email: "",
-        password: "",
-      });
+    try {
+      await signInAccount(values.email, values.password);
+      if (from !== null) {
+        navigate(`${from.replace("http://" + window.location.host, "")}`);
+      } else {
+        navigate(`${routes.home}`);
+      }
+      if (isSubmitSuccessful) {
+        reset({
+          email: "",
+          password: "",
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
-
   return (
     <Container>
       <form
@@ -104,8 +106,14 @@ const Signin = () => {
         <div className="flex items-center gap-x-2 text-sm">
           <Label className="!cursor-default">Bạn chưa có tài khoản?</Label>
           <Label
-            className="!text-cblue font-medium"
-            onClick={() => navigate(`/${routes.signup}`)}>
+            onClick={() => {
+              if (from !== null) {
+                navigate(`/signup?from=${from}`);
+              } else {
+                navigate(`/signup`);
+              }
+            }}
+            className="font-medium !text-cblue">
             Đăng ký ngay
           </Label>
         </div>
