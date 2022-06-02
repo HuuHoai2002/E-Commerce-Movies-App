@@ -11,6 +11,7 @@ import { routes } from "../../config/routes";
 import { useGetParamsUrl } from "../../hooks";
 import { Container } from "../../layouts/components/container";
 import { firebaseServices } from "../../services";
+import { handleReplaceUrl } from "../../utils";
 
 const schema = yup
   .object({
@@ -60,12 +61,13 @@ const Signup = () => {
       });
     }
   }, [errors]);
+
   const onSubmitHandler = async (values) => {
     if (!isValid) return;
     try {
       await createAccount(values.email, values.password, values.username);
       if (from !== null) {
-        navigate(`${from.replace("http://" + window.location.host, "")}`);
+        navigate(`${handleReplaceUrl(from)}`);
       } else {
         navigate(`${routes.home}`);
       }

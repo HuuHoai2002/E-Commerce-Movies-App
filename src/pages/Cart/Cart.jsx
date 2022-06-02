@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Loading } from "../../components/loading";
 import { useBackToPage, useGetDataWithUserId } from "../../hooks";
 import { Container } from "../../layouts/components/container";
 import { setTitle } from "../../utils";
@@ -19,7 +20,7 @@ const Cart = () => {
   return (
     <Container>
       <div>
-        {data && data?.orders?.items?.length > 0 ? "Có data" : "Chưa có data"}
+        {data && data?.orders?.items?.length > 0 ? "Có data" : <Loading />}
       </div>
     </Container>
   );

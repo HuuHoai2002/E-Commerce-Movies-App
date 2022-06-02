@@ -11,7 +11,7 @@ import { Header } from "./layouts/header";
 import { ProtectedRoute } from "./utils/routes";
 
 const Home = lazy(() => import("./pages/Home/Home"));
-const ProductDetails = lazy(() => import("./pages/Details/ProductDetails"));
+const Details = lazy(() => import("./pages/Details/ProductDetails"));
 const Footer = lazy(() => import("./layouts/footer/Footer"));
 const Search = lazy(() => import("./pages/Search/Search"));
 const Cart = lazy(() => import("./pages/Cart/Cart"));
@@ -44,10 +44,7 @@ const App = () => {
         <Scroll />
         <Routes>
           <Route path={`${routes.home}`} element={<Home />} />
-          <Route
-            path={`${routes.details}/:slug`}
-            element={<ProductDetails />}
-          />
+          <Route path={`${routes.details}/:slug`} element={<Details />} />
           <Route path={`${routes.search}`} element={<Search />} />
           <Route path={`${routes.cart}`} element={<Cart />} />
           <Route path={`${routes.signup}`} element={<Signup />} />
