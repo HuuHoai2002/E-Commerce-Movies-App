@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Loading } from "../../components/loading";
 import { useBackToPage, useGetDataWithUserId } from "../../hooks";
 import { Container } from "../../layouts/components/container";
 import { setTitle } from "../../utils";
@@ -19,9 +18,7 @@ const Cart = () => {
   }, [data, handleBackToPage, isLogin]);
   return (
     <Container>
-      <div>
-        {data && data?.orders?.items?.length > 0 ? "Có data" : <Loading />}
-      </div>
+      <div className=""></div>
     </Container>
   );
 };

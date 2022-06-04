@@ -6,4 +6,5 @@ export const routes = {
   signup: "signup",
   cart: "cart",
   search: "search",
+  profile: "/profile",
 };
