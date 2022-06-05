@@ -45,6 +45,14 @@
     text-overflow: ellipsis;
     word-break: break-word;
   }
+  .cart-name-truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
   .reviews-truncete {
     display: -webkit-box;
     -webkit-line-clamp: 4;

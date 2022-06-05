@@ -1,4 +1,6 @@
+import { routes } from "../../config/routes";
 import { useGetAuth } from "../../hooks";
+import { Href } from "../../layouts/components/href";
 import { firebaseServices } from "../../services";
 
 const User = () => {
@@ -22,10 +24,12 @@ const User = () => {
             <span className="font-medium">{user.displayName}</span>
           </div>
         ) : (
-          <div className="flex items-start flex-col gap-y-1 text-sm leading-none">
-            <span className="text-xs">Đăng nhập/Đăng ký</span>
-            <span className="font-medium">Tài khoản</span>
-          </div>
+          <Href to={routes.signin}>
+            <div className="flex items-start flex-col gap-y-1 text-sm leading-none">
+              <span className="text-xs">Đăng nhập/Đăng ký</span>
+              <span className="font-medium">Tài khoản</span>
+            </div>
+          </Href>
         )}
       </div>
     </div>

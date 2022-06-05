@@ -1,8 +1,10 @@
 import { routes } from "../../config/routes";
+import { useGetAuth, useGetDataWithUserId } from "../../hooks";
 import { Href } from "../components/href";
 
 const HeaderCart = () => {
-  const quantity = "0";
+  const { data } = useGetDataWithUserId("cart");
+  const { auth } = useGetAuth();
   return (
     <Href to={`/${routes.cart}`}>
       <div className="text-white hover:opacity-90 cursor-pointer transition-all">
@@ -13,13 +15,12 @@ const HeaderCart = () => {
               alt=""
               className="w-8 h-8"
             />
-            {quantity && (
+            {auth.is_login && data && (
               <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-xs flex items-center justify-center bg-cyellow text-black font-medium">
-                {quantity || "0"}
+                {data?.orders?.items?.length || "0"}
               </div>
             )}
           </div>
-          <div className="mt-auto">giỏ hàng</div>
         </div>
       </div>
     </Href>

@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 
-const Href = ({ children, to }) => {
-  return <Link to={to}>{children}</Link>;
+const Href = ({ children, to, className }) => {
+  return (
+    <Link to={to} className={className}>
+      {children}
+    </Link>
+  );
 };
 
 export default Href;

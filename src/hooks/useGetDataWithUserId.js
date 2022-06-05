@@ -5,19 +5,21 @@ import useGetAuth from "./useGetAuth";
 
 export default function useGetDataWithUserId(collectionName = "") {
   const { auth } = useGetAuth();
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    const q = query(
-      collection(db, collectionName),
-      where("userid", "==", auth?.userId || "")
-    );
-    onSnapshot(q, (doc) => {
-      doc.forEach((item) => {
-        setData({ ...item.data() });
+    if (auth.is_login) {
+      const q = query(
+        collection(db, collectionName),
+        where("userid", "==", auth?.userId || "")
+      );
+      onSnapshot(q, (doc) => {
+        doc.forEach((item) => {
+          setData({ ...item.data(), is_login: true });
+        });
       });
-    });
-  }, [auth.userId, collectionName]);
+    }
+  }, [auth, collectionName]);
 
   return {
     data,
