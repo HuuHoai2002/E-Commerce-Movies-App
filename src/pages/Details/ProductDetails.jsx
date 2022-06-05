@@ -15,16 +15,18 @@ import { View } from "../../layouts/components/view";
 import { ProductInfo } from "../../layouts/products";
 import { Review } from "../../layouts/reviews";
 import { SimilarProduct } from "../../layouts/similar";
+import { firebaseServices } from "../../services";
 
 const ProductDetails = () => {
+  const { updateDataToFireStore } = firebaseServices();
   const { url: id } = useGetParamsUrl("id");
   const { data } = useFetchingProductDetails(id);
   const { handleBackToPage, isLogin } = useBackToPage(window.location.href);
 
-  const handleClick = () => {
+  const handleClick = async (data) => {
     handleBackToPage();
     if (isLogin) {
-      console.log("is login");
+      await updateDataToFireStore(data);
     }
   };
 
@@ -57,15 +59,15 @@ const ProductDetails = () => {
                       className="!min-w-[300px] !min-h-[48px] !rounded hover:!opacity-80"
                       title="Mua hàng"
                       activeHover={true}
-                      onClick={handleClick}
+                      onClick={() => handleClick(data)}
                     />
-                    <Button
+                    {/* <Button
                       className="!min-w-[200px] !min-h-[48px] !bg-transparent !rounded"
                       title="Thêm vào giỏ hàng"
                       activeHover={false}
                       activeBorder={true}
                       onClick={handleClick}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>

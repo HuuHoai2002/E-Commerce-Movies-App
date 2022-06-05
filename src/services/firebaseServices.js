@@ -4,7 +4,13 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import {
+  arrayUnion,
+  doc,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { toast } from "react-toastify";
 import { auth, db } from "../firebase/firebase-config";
 
@@ -72,16 +78,24 @@ const firebaseServices = () => {
   //   });
   // }
 
-  async function updateDataWithUserId(collectionName = "", userId = "", data) {
-    const docRef = doc(db, collectionName, userId);
-    await updateDoc(docRef, { ...data, updateAt: serverTimestamp() });
+  async function updateDataToFireStore(data) {
+    const docRef = doc(db, "cart", auth.currentUser.uid);
+    try {
+      await updateDoc(docRef, {
+        "orders.items": arrayUnion(data),
+        updateAt: serverTimestamp(),
+      });
+      toast.success("Thêm sản phẩm thành công");
+    } catch (error) {
+      toast.warning("Bạn đã thêm sản phẩm này rồi");
+    }
   }
 
   return {
     createAccount,
     signInAccount,
     signOutAccount,
-    updateDataWithUserId,
+    updateDataToFireStore,
   };
 };
 

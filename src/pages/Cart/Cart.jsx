@@ -5,7 +5,7 @@ import { Heading } from "../../components/heading";
 import { Image } from "../../components/image";
 import { routes } from "../../config/routes";
 import { useBackToPage, useGetDataWithUserId } from "../../hooks";
-import { CartItem } from "../../layouts/cart";
+import { CartList } from "../../layouts/cart";
 import { Container } from "../../layouts/components/container";
 import { Flex } from "../../layouts/components/flex";
 import { Href } from "../../layouts/components/href";
@@ -18,12 +18,8 @@ const Cart = () => {
   useEffect(() => {
     setTitle("Giỏ hàng");
     handleBackToPage();
-
-    if (isLogin) {
-      console.log("is login");
-      console.log(data);
-    }
   }, [data, handleBackToPage, isLogin]);
+
   return (
     <Container>
       <div className="cart">
@@ -42,7 +38,7 @@ const Cart = () => {
                     className="w-[400px] cursor-pointer">
                     <Checkbox id="checkbox"></Checkbox>
                     <span className="text-sm text-ctext">
-                      Tất cả (8 sản phẩm)
+                      Tất cả ({data?.orders?.items?.length} sản phẩm)
                     </span>
                   </label>
                   <div className="flex-1 flex items-center justify-between text-sm text-ctext">
@@ -59,16 +55,7 @@ const Cart = () => {
                 </div>
                 <div className="cart-items">
                   <div className="w-full rounded-md">
-                    <div className="w-full flex flex-col gap-y-4">
-                      <CartItem />
-                      <CartItem />
-                      <CartItem />
-                      <CartItem />
-                      <CartItem />
-                      <CartItem />
-                      <CartItem />
-                      <CartItem />
-                    </div>
+                    <CartList data={data?.orders?.items} />
                   </div>
                 </div>
               </div>
@@ -181,7 +168,7 @@ const Cart = () => {
             <span className="font-medium text-ctext">
               Không có sản phẩm nào trong giỏ hàng của bạn.
             </span>
-            <Href to={routes.home} className="w-[250px]">
+            <Href to={routes.home} className="w-[250px] mt-4">
               <Button
                 className="!min-w-full !rounded-md hover:!opacity-80 !text-sm"
                 activeHover={true}>
