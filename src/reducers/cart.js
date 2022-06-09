@@ -1,6 +1,9 @@
+import { v4 as uuidv4 } from "uuid";
+
 const initialState = {
   orders: [],
   listId: [],
+  ordersId: uuidv4(),
   totalPrice: "",
 };
 
@@ -27,6 +30,7 @@ const cartReducer = (state = initialState, action) => {
       }
       const totalPrice = handleGetTotalPrice(newOrders);
       return {
+        ...state,
         orders: newOrders,
         listId: newListId,
         totalPrice,
@@ -37,6 +41,7 @@ const cartReducer = (state = initialState, action) => {
       const newListId = action.payload.map((item) => item.id);
       const totalPrice = handleGetTotalPrice(newOrders);
       return {
+        ...state,
         orders: newOrders,
         listId: newListId,
         totalPrice,
@@ -52,6 +57,7 @@ const cartReducer = (state = initialState, action) => {
 
       const totalPrice = handleGetTotalPrice(resultOrders);
       return {
+        ...state,
         orders: resultOrders,
         listId: resultListId,
         totalPrice,
@@ -66,4 +72,3 @@ const cartReducer = (state = initialState, action) => {
 };
 
 export default cartReducer;
-

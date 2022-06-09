@@ -1,23 +1,13 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { Fragment, lazy, Suspense, useEffect } from "react";
+import { Fragment, Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { signIn, signOut } from "./actions/auth";
-import { Loading } from "./components/loading";
-import { routes } from "./config/routes";
 import { auth } from "./firebase/firebase-config";
 import { Scroll } from "./layouts/components/scroll";
-import { Header } from "./layouts/header";
+import { DefaultLayout } from "./layouts/default";
+import { publicRoutes } from "./routes/routes";
 import { ProtectedRoute } from "./utils/routes";
-
-const Home = lazy(() => import("./pages/Home/Home"));
-const Details = lazy(() => import("./pages/Details/ProductDetails"));
-const Footer = lazy(() => import("./layouts/footer/Footer"));
-const Search = lazy(() => import("./pages/Search/Search"));
-const Cart = lazy(() => import("./pages/Cart/Cart"));
-const Signup = lazy(() => import("./pages/Sign/Signup"));
-const Signin = lazy(() => import("./pages/Sign/Signin"));
-const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -39,26 +29,34 @@ const App = () => {
   }, [dispatch]);
   return (
     <Fragment>
-      <Header />
-      <Suspense fallback={<Loading className="border-[3px]" />}>
+      <Suspense fallback={""}>
         <Scroll />
         <Routes>
-          <Route path={`${routes.home}`} element={<Home />} />
-          <Route path={`${routes.details}/:slug`} element={<Details />} />
-          <Route path={`${routes.search}`} element={<Search />} />
-          <Route path={`${routes.cart}`} element={<Cart />} />
-          <Route path={`${routes.signup}`} element={<Signup />} />
-          <Route
-            path={`${routes.signin}`}
-            element={
-              <ProtectedRoute>
-                <Signin />
-              </ProtectedRoute>
+          {publicRoutes.map((route, index) => {
+            const Page = route.component;
+            let Layout = DefaultLayout;
+            if (route.layout) {
+              Layout = route.layout;
             }
-          />
-          <Route path="*" element={<NotFound />} />
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <Layout {...route.content}>
+                    {route.isPrivate ? (
+                      <ProtectedRoute>
+                        <Page />
+                      </ProtectedRoute>
+                    ) : (
+                      <Page />
+                    )}
+                  </Layout>
+                }
+              />
+            );
+          })}
         </Routes>
-        <Footer />
       </Suspense>
     </Fragment>
   );

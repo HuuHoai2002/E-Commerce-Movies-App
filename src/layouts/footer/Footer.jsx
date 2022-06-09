@@ -34,7 +34,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-info py-5 bg-white">
-          <div className="max-w-[1360px] mx-auto px-[60px]">
+          <div className="max-w-[1360px] mx-auto px-[60px] py-5">
             <Grid col="4">
               {footerInfo.map((item) => (
                 <div className="flex flex-col gap-y-2" key={item.id}>

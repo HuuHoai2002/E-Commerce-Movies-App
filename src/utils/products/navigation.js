@@ -14,7 +14,10 @@ const navigation = () => {
   const userPage = () => {};
   const loginPage = () => {};
   const cartPage = () => {};
-  return { detailsPage, searchKeyword };
+  const checkOut = (orderId = "") => {
+    return `/${routes.checkout}?order_id=${orderId}`;
+  };
+  return { detailsPage, searchKeyword, checkOut };
 };
 
 export default navigation;

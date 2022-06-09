@@ -16,12 +16,6 @@ const SearchContent = ({ movies, loading, keyword, setShow }) => {
           <div className="">
             {movies.length > 0 ? (
               <div>
-                {/* <Link to={searchKeyword(keyword)}>
-                  <div className="p-2 bg-cbg cursor-pointer">
-                    Tìm toàn bộ sản phẩm có tên :
-                    <span className="text-cblue font-medium"> "{keyword}"</span>
-                  </div>
-                </Link> */}
                 <div className="w-full flex flex-col">
                   {movies.map((item) => (
                     <Link

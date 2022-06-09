@@ -4,7 +4,7 @@ const Button = ({
   children,
   activeHover = false,
   activeBorder = false,
-  onClick = () => {},
+  onClick,
   to = "",
   ...props
 }) => {

@@ -86,7 +86,7 @@ const firebaseServices = () => {
         "orders.items": arrayUnion(data),
         updateAt: serverTimestamp(),
       });
-      toast.success("Thêm sản phẩm thành công");
+      toast.success("Thêm sản phẩm thành công", { pauseOnHover: false });
     } catch (error) {
       toast.warning("Bạn đã thêm sản phẩm này rồi");
     }
@@ -99,10 +99,10 @@ const firebaseServices = () => {
         "orders.items": arrayRemove(data),
         updateAt: serverTimestamp(),
       });
-      toast.success("Xóa sản phẩm thành công");
+      toast.success("Xóa sản phẩm thành công", { pauseOnHover: false });
     } catch (error) {
       // toast.warning("Bạn đã thêm sản phẩm này rồi");
-      console.log("Error: ", error);
+      console.log("Error: ", error, { pauseOnHover: false });
     }
   }
   return {

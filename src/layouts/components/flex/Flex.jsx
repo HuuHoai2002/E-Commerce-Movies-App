@@ -10,14 +10,23 @@ const FlexStyles = styled.div`
   margin-top: ${(props) => props.mt || "0px"};
 `;
 
-const Flex = ({ children, background, radius, padding, gap, mt }) => {
+const Flex = ({
+  children,
+  background,
+  radius,
+  padding,
+  gap,
+  mt,
+  className,
+}) => {
   return (
     <FlexStyles
       background={background}
       radius={radius}
       padding={padding}
       gap={gap}
-      mt={mt}>
+      mt={mt}
+      className={className}>
       {children}
     </FlexStyles>
   );

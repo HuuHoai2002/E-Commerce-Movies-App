@@ -1,6 +1,7 @@
-import { Checkbox } from "@mui/material";
+import { Checkbox, Tooltip } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   addAllToShoppingList,
   removeAllFromShoppingList,
@@ -15,10 +16,13 @@ import { Container } from "../../layouts/components/container";
 import { Flex } from "../../layouts/components/flex";
 import { Href } from "../../layouts/components/href";
 import { setTitle, showToast } from "../../utils";
+import { navigation } from "../../utils/products";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+  const { checkOut } = navigation();
+  const { orders, ordersId, totalPrice } = useSelector((state) => state.cart);
   const { data } = useGetDataWithUserId("cart");
   const { handleBackToPage, isLogin } = useBackToPage(window.location.href);
 
@@ -28,10 +32,19 @@ const Cart = () => {
   }, [data, dispatch, handleBackToPage, isLogin]);
 
   const handleClickCheckBox = () => {
-    if (data?.orders?.items?.length === cart.orders.length) {
+    if (data?.orders?.items?.length === orders.length) {
       dispatch(removeAllFromShoppingList());
     } else {
       dispatch(addAllToShoppingList(data.orders.items));
+    }
+  };
+
+  const handleCheckOut = () => {
+    if (orders.length === 0) {
+      showToast("Bạn chưa chọn sản phẩm nào", false, true);
+    } else {
+      console.log("Có sản phẩm");
+      navigate(checkOut(ordersId));
     }
   };
 
@@ -54,9 +67,7 @@ const Cart = () => {
                     <Checkbox
                       id="checkbox"
                       onClick={handleClickCheckBox}
-                      checked={
-                        data?.orders?.items?.length === cart.orders.length
-                      }
+                      checked={data?.orders?.items?.length === orders.length}
                     />
                     <span className="text-sm text-ctext" id="checkbox">
                       Tất cả ({data?.orders?.items?.length} sản phẩm)
@@ -66,12 +77,14 @@ const Cart = () => {
                     <span>Đơn giá</span>
                     <span className="min-w-[104px] text-center">Số lượng</span>
                     <span>Thành tiền</span>
-                    <span className="cursor-pointer">
-                      <img
-                        src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
-                        alt="deleted"
-                      />
-                    </span>
+                    <Tooltip title="Xóa tất cả sản phẩm" placement="top">
+                      <span className="cursor-pointer">
+                        <img
+                          src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                          alt="deleted"
+                        />
+                      </span>
+                    </Tooltip>
                   </div>
                 </div>
                 <div className="cart-items">
@@ -83,7 +96,7 @@ const Cart = () => {
             </div>
             <div className="flex-1">
               <div className="w-full flex flex-col gap-y-4 sticky top-0 z-50">
-                <div className="p-3 bg-white rounded-md">
+                <div className="p-4 bg-white rounded-md">
                   <div className="w-full">
                     <div className="w-full flex items-center justify-between">
                       <span className="font-medium text-base">Giao tới</span>
@@ -93,7 +106,7 @@ const Cart = () => {
                     </div>
                     <div className="user mt-2">
                       <span className="font-medium text-sm">
-                        Nghiêm Hữu Hoài
+                        {data?.username}
                       </span>
                       <p className="text-sm text-ctext leading-6">
                         Địa chỉ: Chưa có thông tin
@@ -146,11 +159,14 @@ const Cart = () => {
                     <div className="w-full p-3 flex flex-col gap-y-3">
                       <div className="flex items-center justify-between">
                         <span className="font-medium text-ctext opacity-80">
-                          Tạm tính
+                          Tạm tính{" "}
+                          <span className="text-sm">
+                            {orders.length > 0
+                              ? `(${orders.length} sản phẩm)`
+                              : ""}
+                          </span>
                         </span>
-                        <span className="text-sm text-ctext">
-                          {cart.totalPrice}
-                        </span>
+                        <span className="text-sm text-ctext">{totalPrice}</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="font-medium text-ctext opacity-80">
@@ -167,7 +183,7 @@ const Cart = () => {
                             Tổng tiền
                           </span>
                           <span className="text-xl text-cprice font-bold">
-                            {cart.totalPrice}
+                            {totalPrice}
                           </span>
                         </div>
                       </div>
@@ -177,8 +193,9 @@ const Cart = () => {
                 <div className="w-full">
                   <Button
                     className="!min-w-full !rounded-md hover:!opacity-80"
-                    activeHover={true}>
-                    Mua Hàng
+                    activeHover={true}
+                    onClick={handleCheckOut}>
+                    Mua Hàng ({orders.length > 0 ? orders.length : 0})
                   </Button>
                 </div>
               </div>

@@ -9,9 +9,10 @@ import { useClickOutSide, useSearchKeyword } from "../../hooks";
 import SearchContent from "./SearchContent";
 
 const HeaderSearch = () => {
-  const { show, setShow, nodeRef } = useClickOutSide("div");
+  const { show, setShow, nodeRef } = useClickOutSide();
   const [values, setValues] = useState("");
   const inputRef = useRef();
+
   const handleSetValues = lodash.debounce((e) => {
     const inputValues = e.target.value;
     if (!inputValues.startsWith(" ")) setValues(inputValues);

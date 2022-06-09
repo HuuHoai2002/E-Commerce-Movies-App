@@ -1,4 +1,4 @@
-import { Checkbox } from "@mui/material";
+import { Checkbox, Tooltip } from "@mui/material";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { addToShoppingList, removeFromShoppingList } from "../../actions/cart";
@@ -32,7 +32,7 @@ const CartItem = ({ data, isOrder }) => {
 
   return (
     <div className="cart-item">
-      <Flex radius="6px" padding="12px">
+      <Flex radius="6px" className="!py-3 !pr-3">
         <div className="w-[384px] flex items-start gap-x-4">
           <Checkbox onClick={handleClickCheckBox} checked={isOrder} />
           <Image
@@ -57,15 +57,16 @@ const CartItem = ({ data, isOrder }) => {
             />
           </span>
           <span className="text-cprice font-bold leading-6">{price}</span>
-          <span
-            className="cursor-pointer"
-            title="Xóa sản phẩm này khỏi giỏ hàng"
-            onClick={() => handleRemoveCartItem(data)}>
-            <img
-              src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
-              alt="deleted"
-            />
-          </span>
+          <Tooltip title="Xóa" placement="top">
+            <span
+              className="cursor-pointer"
+              onClick={() => handleRemoveCartItem(data)}>
+              <img
+                src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                alt="deleted"
+              />
+            </span>
+          </Tooltip>
         </div>
       </Flex>
     </div>

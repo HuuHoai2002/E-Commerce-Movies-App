@@ -1,19 +1,13 @@
-import { useCallback, useState } from "react";
 import { Heading } from "../../components/heading";
 import { ModalPopup } from "../../components/modal";
 import { Tooltip } from "../../components/tooltip";
+import { useToggle } from "../../hooks";
 import { getVoteStar } from "../../utils/products";
 import { ModalWraps } from "../components/modalWraps";
 
 const ProductsInfo = ({ data }) => {
   const { renderStars } = getVoteStar();
-  const [open, setOpen] = useState(false);
-  const handleOpen = useCallback(() => {
-    setOpen(true);
-  }, []);
-  const handleClose = useCallback(() => {
-    setOpen(false);
-  }, []);
+  const { open, handleClose, handleOpen } = useToggle(false);
 
   return (
     <div className="">
