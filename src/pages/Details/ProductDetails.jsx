@@ -1,5 +1,6 @@
-import { Fragment } from "react";
-import { Button } from "../../components/button";
+import { Fragment, useState } from "react";
+// import { Button } from "../../components/button";
+import { Button } from "../../components/form/button";
 import { IPlay } from "../../components/icons";
 import { Image } from "../../components/image";
 import { QuantityInput } from "../../components/quantityInput";
@@ -18,15 +19,18 @@ import { SimilarProduct } from "../../layouts/similar";
 import { firebaseServices } from "../../services";
 
 const ProductDetails = () => {
-  const { updateDataToFireStore } = firebaseServices();
+  const { updateDataToFirestore } = firebaseServices();
   const { url: id } = useGetParamsUrl("id");
   const { data } = useFetchingProductDetails(id);
   const { handleBackToPage, isLogin } = useBackToPage(window.location.href);
+  const [loading, setLoading] = useState(false);
 
-  const handleClick = async (data) => {
+  const handleAddToCart = async (data) => {
     handleBackToPage();
     if (isLogin) {
-      await updateDataToFireStore(data);
+      setLoading(true);
+      await updateDataToFirestore(data);
+      setLoading(false);
     }
   };
 
@@ -55,12 +59,20 @@ const ProductDetails = () => {
                 <div className="w-full flex flex-col gap-y-5">
                   <QuantityInput disabledSelect={true} />
                   <div className="flex items-center gap-x-3">
-                    <Button
+                    <div className="min-w-[300px]">
+                      <Button
+                        height="48px"
+                        onClick={() => handleAddToCart(data)}
+                        isLoading={loading}>
+                        Mua Hàng
+                      </Button>
+                    </div>
+                    {/* <Button
                       className="!min-w-[300px] !min-h-[48px] !rounded hover:!opacity-80"
                       title="Mua hàng"
                       activeHover={true}
                       onClick={() => handleClick(data)}
-                    />
+                    /> */}
                     {/* <Button
                       className="!min-w-[200px] !min-h-[48px] !bg-transparent !rounded"
                       title="Thêm vào giỏ hàng"

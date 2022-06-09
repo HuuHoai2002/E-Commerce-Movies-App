@@ -1,5 +1,10 @@
 import { Checkbox } from "@mui/material";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addAllToShoppingList,
+  removeAllFromShoppingList,
+} from "../../actions/cart";
 import { Button } from "../../components/button";
 import { Heading } from "../../components/heading";
 import { Image } from "../../components/image";
@@ -12,13 +17,23 @@ import { Href } from "../../layouts/components/href";
 import { setTitle, showToast } from "../../utils";
 
 const Cart = () => {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
   const { data } = useGetDataWithUserId("cart");
   const { handleBackToPage, isLogin } = useBackToPage(window.location.href);
 
   useEffect(() => {
     setTitle("Giỏ hàng");
     handleBackToPage();
-  }, [data, handleBackToPage, isLogin]);
+  }, [data, dispatch, handleBackToPage, isLogin]);
+
+  const handleClickCheckBox = () => {
+    if (data?.orders?.items?.length === cart.orders.length) {
+      dispatch(removeAllFromShoppingList());
+    } else {
+      dispatch(addAllToShoppingList(data.orders.items));
+    }
+  };
 
   return (
     <Container>
@@ -34,10 +49,16 @@ const Cart = () => {
               <div className="w-full">
                 <div className="flex items-center bg-white rounded-md pr-3 mb-4 sticky top-0 z-50 use-shadow">
                   <label
-                    htmlFor="checkbox"
-                    className="w-[400px] cursor-pointer">
-                    <Checkbox id="checkbox"></Checkbox>
-                    <span className="text-sm text-ctext">
+                    className="w-[400px] cursor-pointer"
+                    htmlFor="checkbox">
+                    <Checkbox
+                      id="checkbox"
+                      onClick={handleClickCheckBox}
+                      checked={
+                        data?.orders?.items?.length === cart.orders.length
+                      }
+                    />
+                    <span className="text-sm text-ctext" id="checkbox">
                       Tất cả ({data?.orders?.items?.length} sản phẩm)
                     </span>
                   </label>
@@ -127,7 +148,9 @@ const Cart = () => {
                         <span className="font-medium text-ctext opacity-80">
                           Tạm tính
                         </span>
-                        <span className="text-sm text-ctext">0đ</span>
+                        <span className="text-sm text-ctext">
+                          {cart.totalPrice}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="font-medium text-ctext opacity-80">
@@ -143,7 +166,9 @@ const Cart = () => {
                           <span className="font-medium text-ctext opacity-80">
                             Tổng tiền
                           </span>
-                          <span className="text-sm text-ctext">0đ</span>
+                          <span className="text-xl text-cprice font-bold">
+                            {cart.totalPrice}
+                          </span>
                         </div>
                       </div>
                     </div>

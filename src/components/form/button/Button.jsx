@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Loading } from "../../loading";
 
 const ButtonStyles = styled.button`
+  width: 100%;
   cursor: pointer;
   padding: 0 25px;
   line-height: 1;

@@ -5,6 +5,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import {
+  arrayRemove,
   arrayUnion,
   doc,
   serverTimestamp,
@@ -78,7 +79,7 @@ const firebaseServices = () => {
   //   });
   // }
 
-  async function updateDataToFireStore(data) {
+  async function updateDataToFirestore(data) {
     const docRef = doc(db, "cart", auth.currentUser.uid);
     try {
       await updateDoc(docRef, {
@@ -91,11 +92,25 @@ const firebaseServices = () => {
     }
   }
 
+  async function removeDataToFirestore(data) {
+    const docRef = doc(db, "cart", auth.currentUser.uid);
+    try {
+      await updateDoc(docRef, {
+        "orders.items": arrayRemove(data),
+        updateAt: serverTimestamp(),
+      });
+      toast.success("Xóa sản phẩm thành công");
+    } catch (error) {
+      // toast.warning("Bạn đã thêm sản phẩm này rồi");
+      console.log("Error: ", error);
+    }
+  }
   return {
     createAccount,
     signInAccount,
     signOutAccount,
-    updateDataToFireStore,
+    updateDataToFirestore,
+    removeDataToFirestore,
   };
 };
 
