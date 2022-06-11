@@ -14,8 +14,8 @@ const navigation = () => {
   const userPage = () => {};
   const loginPage = () => {};
   const cartPage = () => {};
-  const checkOut = (orderId = "") => {
-    return `/${routes.checkout}?order_id=${orderId}`;
+  const checkOut = (orderId = "", userId = "") => {
+    return `/${routes.checkout}?orders_id=${orderId}&user_id=${userId}`;
   };
   return { detailsPage, searchKeyword, checkOut };
 };

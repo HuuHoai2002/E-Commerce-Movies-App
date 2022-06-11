@@ -3,24 +3,20 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { addToShoppingList, removeFromShoppingList } from "../../actions/cart";
 import { Image } from "../../components/image";
+import { ModalConfirm } from "../../components/modalConfirm";
 import { QuantityInput } from "../../components/quantityInput";
+import { useToggle } from "../../hooks";
 import { firebaseServices } from "../../services";
-import { showToast } from "../../utils";
 import { navigation } from "../../utils/products";
 import { Flex } from "../components/flex";
 import { Href } from "../components/href";
 
 const CartItem = ({ data, isOrder }) => {
-  const dispatch = useDispatch();
-  const { detailsPage } = navigation();
-  const { removeDataToFirestore } = firebaseServices();
   const { title, original_title, price, poster_path, id } = data;
-
-  const handleRemoveCartItem = useCallback(async (data) => {
-    await removeDataToFirestore(data);
-    dispatch(removeFromShoppingList(data.id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { removeDataToFirestore } = firebaseServices();
+  const { detailsPage } = navigation();
+  const { handleClose, handleOpen, open } = useToggle();
+  const dispatch = useDispatch();
 
   const handleClickCheckBox = () => {
     if (isOrder) {
@@ -29,6 +25,12 @@ const CartItem = ({ data, isOrder }) => {
       dispatch(addToShoppingList(data));
     }
   };
+
+  const handleRemoveCartItem = useCallback(async (data) => {
+    await removeDataToFirestore(data);
+    dispatch(removeFromShoppingList(data.id));
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="cart-item">
@@ -51,22 +53,28 @@ const CartItem = ({ data, isOrder }) => {
             <QuantityInput
               disabledSelect={true}
               heading={false}
-              onClick={() =>
-                showToast("Bạn chỉ được chọn một sản phẩm", false, true)
-              }
+              // onClick={() =>
+              //   showToast("Bạn chỉ được chọn một sản phẩm", false, true)
+              // }
             />
           </span>
           <span className="text-cprice font-bold leading-6">{price}</span>
           <Tooltip title="Xóa" placement="top">
-            <span
-              className="cursor-pointer"
-              onClick={() => handleRemoveCartItem(data)}>
+            <span className="cursor-pointer" onClick={handleOpen}>
               <img
                 src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
                 alt="deleted"
               />
             </span>
           </Tooltip>
+          {open && (
+            <ModalConfirm
+              title="Bạn chắc chắn muốn xóa sản phẩm này ?"
+              open={open}
+              handleClose={handleClose}
+              handler={() => handleRemoveCartItem(data)}
+            />
+          )}
         </div>
       </Flex>
     </div>

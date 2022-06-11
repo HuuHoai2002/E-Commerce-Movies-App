@@ -10,9 +10,14 @@ export default function useToggle(init) {
   const handleClose = useCallback(() => {
     setState(false);
   }, []);
+
+  const handleToggle = useCallback(() => {
+    setState(!open);
+  }, [open]);
   return {
     open,
     handleOpen,
     handleClose,
+    handleToggle,
   };
 }

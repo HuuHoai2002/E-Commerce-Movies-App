@@ -13,7 +13,6 @@ import { Container } from "../../layouts/components/container";
 import { firebaseServices } from "../../services";
 import { handleReplaceUrl } from "../../utils";
 
-
 const schema = yup
   .object({
     email: yup
@@ -55,7 +54,6 @@ const Signin = () => {
     }
   }, [errors]);
 
- 
   const onSubmitHandler = async (values) => {
     if (!isValid) return;
     try {
@@ -111,7 +109,7 @@ const Signin = () => {
           <Label
             onClick={() => {
               if (from !== null) {
-                navigate(`/signup?from=${from}`);
+                navigate(`/signup?from=${encodeURIComponent(from)}`);
               } else {
                 navigate(`/signup`);
               }

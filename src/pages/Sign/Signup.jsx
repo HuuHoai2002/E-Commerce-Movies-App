@@ -131,7 +131,7 @@ const Signup = () => {
             className="!text-cblue font-medium"
             onClick={() => {
               if (from !== null) {
-                navigate(`/signin?from=${from}`);
+                navigate(`/signin?from=${encodeURIComponent(from)}`);
               } else {
                 navigate(`/signin`);
               }
