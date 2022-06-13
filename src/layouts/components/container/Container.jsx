@@ -7,13 +7,17 @@ const ContainerStyles = styled.div`
   min-height: ${(props) => props.minHeight || "100vh"};
   margin-left: auto;
   margin-right: auto;
-  background-color: ${(props) => props.theme.cbg};
+  background-color: ${(props) => props.background || props.theme.cbg};
   padding: ${(props) => props.py || "20px"} ${(props) => props.px || "60px"};
 `;
 
-const Container = ({ children, py, px, minHeight }) => {
+const Container = ({ children, py, px, minHeight, background }) => {
   return (
-    <ContainerStyles py={py} px={px} minHeight={minHeight}>
+    <ContainerStyles
+      py={py}
+      px={px}
+      minHeight={minHeight}
+      background={background}>
       {children}
     </ContainerStyles>
   );

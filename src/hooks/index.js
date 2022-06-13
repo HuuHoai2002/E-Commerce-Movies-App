@@ -1,5 +1,4 @@
 import useBackToPage from "./useBackToPage";
-import useChangePage from "./useChangePage";
 import useClickOutSide from "./useClickOutSide";
 import useFetchingProductDetails from "./useFetchingProductDetails";
 import useFetchingProducts from "./useFetchingProducts";
@@ -9,6 +8,7 @@ import useGetAuth from "./useGetAuth";
 import useGetDataWithUserId from "./useGetDataWithUserId";
 import useGetParamsUrl from "./useGetParamsUrl";
 import useHover from "./useHover";
+import useLoading from "./useLoading";
 import useSearchKeyword from "./useSearchKeyword";
 import useSearchProducts from "./useSearchProducts";
 import useSlugify from "./useSlugify";
@@ -16,7 +16,7 @@ import useToggle from "./useToggle";
 
 export {
   useClickOutSide,
-  useChangePage,
+  useLoading,
   useHover,
   useToggle,
   useSlugify,

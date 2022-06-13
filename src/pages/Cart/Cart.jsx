@@ -44,7 +44,6 @@ const Cart = () => {
     if (cart?.orders.length === 0) {
       showToast("Bạn chưa chọn sản phẩm nào", false, true);
     } else {
-      console.log("Có sản phẩm");
       navigate(checkOut(cart?.ordersId, auth.userId));
     }
   };
@@ -97,8 +96,8 @@ const Cart = () => {
                 </div>
               </div>
             </div>
-            <div className="flex-1">
-              <div className="sticky top-0 z-50">
+            <div className="flex-1 min-w-[310px] shrink-0">
+              <div className="w-full sticky top-0 z-50">
                 <CartSidebar
                   userInfo={auth}
                   onClick={handleCheckOut}

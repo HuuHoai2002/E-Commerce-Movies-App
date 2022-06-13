@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 // import { Button } from "../../components/button";
 import { Button } from "../../components/form/button";
 import { IPlay } from "../../components/icons";
@@ -9,6 +9,7 @@ import {
   useBackToPage,
   useFetchingProductDetails,
   useGetParamsUrl,
+  useLoading
 } from "../../hooks";
 import { Container } from "../../layouts/components/container";
 import { Flex } from "../../layouts/components/flex";
@@ -23,7 +24,7 @@ const ProductDetails = () => {
   const { url: id } = useGetParamsUrl("id");
   const { data } = useFetchingProductDetails(id);
   const { handleBackToPage, isLogin } = useBackToPage(window.location.href);
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading } = useLoading(false);
 
   const handleAddToCart = async (data) => {
     handleBackToPage();

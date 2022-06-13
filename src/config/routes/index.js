@@ -8,4 +8,5 @@ export const routes = {
   search: "search",
   profile: "profile",
   checkout: "checkout/payment",
+  success: "checkout/payment/success",
 };

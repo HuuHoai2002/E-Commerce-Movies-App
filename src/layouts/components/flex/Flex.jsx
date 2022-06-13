@@ -3,6 +3,7 @@ import styled from "styled-components";
 const FlexStyles = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
   background-color: ${(props) => props.background || "#fff"};
   border-radius: ${(props) => props.radius || "6px"};
   padding: ${(props) => props.padding || "0px"};

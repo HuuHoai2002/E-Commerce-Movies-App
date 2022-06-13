@@ -79,14 +79,15 @@ const firebaseServices = () => {
   //   });
   // }
 
-  async function updateDataToFirestore(data) {
+  async function updateDataToFirestore(data, field = "orders.items") {
     const docRef = doc(db, "cart", auth.currentUser.uid);
     try {
       await updateDoc(docRef, {
-        "orders.items": arrayUnion(data),
+        [field]: field.includes("orders.items") ? arrayUnion(data) : data,
         updateAt: serverTimestamp(),
       });
-      toast.success("Thêm sản phẩm thành công", { pauseOnHover: false });
+      !field.includes("completed_orders") &&
+        toast.success("Thêm sản phẩm thành công", { pauseOnHover: false });
     } catch (error) {
       toast.warning("Bạn đã thêm sản phẩm này rồi");
     }
@@ -96,15 +97,15 @@ const firebaseServices = () => {
     const docRef = doc(db, "cart", auth.currentUser.uid);
     try {
       await updateDoc(docRef, {
-        "orders.items": arrayRemove(data),
+        "orders.items": arrayRemove(Array.isArray(data) ? [...data] : data),
         updateAt: serverTimestamp(),
       });
-      toast.success("Xóa sản phẩm thành công", { pauseOnHover: false });
     } catch (error) {
       // toast.warning("Bạn đã thêm sản phẩm này rồi");
       console.log("Error: ", error, { pauseOnHover: false });
     }
   }
+
   return {
     createAccount,
     signInAccount,

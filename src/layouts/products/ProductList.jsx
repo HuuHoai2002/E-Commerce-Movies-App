@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Grid } from "../components/grid";
 import { Row } from "../components/row";
 import ProductItemSmall from "./ProductItemSmall";
@@ -23,4 +24,4 @@ const ProductList = ({ isRow = false, movies, col }) => {
   );
 };
 
-export default ProductList;
+export default memo(ProductList);

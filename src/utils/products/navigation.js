@@ -17,7 +17,10 @@ const navigation = () => {
   const checkOut = (orderId = "", userId = "") => {
     return `/${routes.checkout}?orders_id=${orderId}&user_id=${userId}`;
   };
-  return { detailsPage, searchKeyword, checkOut };
+  const checkoutSuccess = () => {
+    return `/${routes.success}`;
+  };
+  return { detailsPage, searchKeyword, checkOut, checkoutSuccess };
 };
 
 export default navigation;

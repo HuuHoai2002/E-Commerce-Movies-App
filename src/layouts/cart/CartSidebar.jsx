@@ -1,4 +1,5 @@
-import { Button } from "../../components/button";
+import { memo } from "react";
+import { Button } from "../../components/form/button";
 import { routes } from "../../config/routes";
 import { useToggle } from "../../hooks";
 import { showToast } from "../../utils";
@@ -10,12 +11,13 @@ const CartSidebar = ({
   onClick,
   totalPrice,
   isPayment = false,
+  isLoading = false,
 }) => {
   const { displayName, email } = userInfo;
   const { open, handleToggle } = useToggle(false);
   return (
-    <div className="w-full flex flex-col gap-y-4 sticky top-0 z-50">
-      <div className="p-4 bg-white rounded-md">
+    <div className="w-full shrink-0 flex flex-col gap-y-4 sticky top-0 z-50">
+      <div className="p-4 bg-white rounded">
         <div className="w-full">
           <div className="w-full flex items-center justify-between">
             <span className="font-medium text-base">Thông tin khách hàng</span>
@@ -39,7 +41,7 @@ const CartSidebar = ({
           </div>
         </div>
       </div>
-      <div className="p-3 bg-white rounded-md">
+      <div className="p-3 bg-white rounded">
         <div className="flex items-center justify-between">
           <span className="font-medium text-sm">Tiki khuyến mãi</span>
           <span className="text-sm text-ctext">Có thể chọn 0</span>
@@ -75,7 +77,7 @@ const CartSidebar = ({
           </span>
         </div>
       </div>
-      <div className="bg-white rounded-md">
+      <div className="bg-white rounded">
         <div className="w-full flex flex-col">
           {isPayment && (
             <div>
@@ -147,13 +149,8 @@ const CartSidebar = ({
               </div>
               {isPayment && (
                 <div className="w-full mt-3">
-                  <Button
-                    className="!min-w-full !rounded-md hover:!opacity-80"
-                    activeHover={true}
-                    onClick={onClick}>
-                    {!isPayment
-                      ? `Mua Hàng (${orders.length > 0 ? orders.length : 0})`
-                      : "Đặt Hàng"}
+                  <Button height="48px" onClick={onClick} isLoading={isLoading}>
+                    Đặt Hàng
                   </Button>
                 </div>
               )}
@@ -163,13 +160,8 @@ const CartSidebar = ({
       </div>
       {!isPayment && (
         <div className="w-full">
-          <Button
-            className="!min-w-full !rounded-md hover:!opacity-80"
-            activeHover={true}
-            onClick={onClick}>
-            {!isPayment
-              ? `Mua Hàng (${orders.length > 0 ? orders.length : 0})`
-              : "Đặt Hàng"}
+          <Button height="48px" onClick={onClick} isLoading={isLoading}>
+            {`Mua Hàng (${orders.length > 0 ? orders.length : 0})`}
           </Button>
         </div>
       )}
@@ -177,4 +169,4 @@ const CartSidebar = ({
   );
 };
 
-export default CartSidebar;
+export default memo(CartSidebar);

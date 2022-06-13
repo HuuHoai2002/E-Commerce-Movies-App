@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { memo, useRef } from "react";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IArrowsNext, IArrowsPrev } from "../../components/icons";
@@ -45,4 +45,4 @@ const ProductListScroll = ({ movies, isFlashSale = false }) => {
   );
 };
 
-export default ProductListScroll;
+export default memo(ProductListScroll);
