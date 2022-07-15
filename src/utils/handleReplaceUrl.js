@@ -1,6 +1,6 @@
 const handleReplaceUrl = (url) => {
   return decodeURIComponent(url).replace(
-    `${"http://" || "https://"}` + window.location.host,
+    `https://e-commerce-movies-app.vercel.app`,
     ""
   );
 };
