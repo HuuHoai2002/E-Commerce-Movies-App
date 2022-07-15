@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { removeAllFromShoppingList } from "../../actions/cart";
 import { Button } from "../../components/button";
 import { Heading } from "../../components/heading";
 import { Image } from "../../components/image";
 import { Payments } from "../../components/payments";
+import { routes } from "../../config/routes";
 import {
   useGetAuth,
   useGetDataWithUserId,
@@ -30,6 +32,7 @@ const CheckOut = () => {
   const { auth } = useGetAuth();
   const { open: paymentSuccess, handleOpen } = useToggle(false);
   const { payment } = getImages();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTitle("Hoàn tất thanh toán");
@@ -107,12 +110,6 @@ const CheckOut = () => {
                         "Đơn hàng đã thanh toán"
                       </strong>
                     </Href>
-                    , giờ đây bạn có thể xem những bộ phim này bất cứ khi nào
-                    bạn muốn.
-                  </p>
-                  <p>
-                    Nếu có thắc mắc , đừng ngần ngại và hãy liên hệ với chúng
-                    tôi.
                   </p>
                 </div>
                 <div className="flex items-center gap-x-10">
@@ -120,13 +117,14 @@ const CheckOut = () => {
                     className="!min-w-[300px] !min-h-[48px] !rounded hover:!opacity-80"
                     title="Tiếp tục mua sắm"
                     activeHover={true}
+                    onClick={() => navigate(`${routes.home}`)}
                   />
-                  <Button
+                  {/* <Button
                     className="!min-w-[200px] !min-h-[48px] !bg-transparent !rounded"
                     title="Xem phim ngay"
                     activeHover={false}
                     activeBorder={true}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
