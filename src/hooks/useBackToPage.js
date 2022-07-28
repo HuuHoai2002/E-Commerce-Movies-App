@@ -9,7 +9,7 @@ export default function useBackToPage(from) {
 
   const handleBackToPage = useCallback(() => {
     if (!auth?.is_login) {
-      navigate(`/${routes.signin}?from=${encodeURIComponent(from)}`);
+      navigate(`${routes.signin}?from=${encodeURIComponent(from)}`);
     }
   }, [auth?.is_login, from, navigate]);
 
