@@ -1,7 +1,10 @@
+import Tippy from "@tippyjs/react";
+import "tippy.js/animations/scale.css";
 import { routes } from "../../config/routes";
 import { useGetAuth } from "../../hooks";
 import { Href } from "../../layouts/components/href";
 import { firebaseServices } from "../../services";
+import UserDropdown from "./UserDropdown";
 
 const User = () => {
   const { auth: user } = useGetAuth();
@@ -17,12 +20,16 @@ const User = () => {
       </div>
       <div className="flex-1">
         {user.is_login ? (
-          <div
-            className="flex items-start flex-col gap-y-1 text-sm leading-none"
-            onClick={signOutAccount}>
-            <span className="text-xs">Tài Khoản</span>
-            <span className="font-medium">{user.displayName}</span>
-          </div>
+          <Tippy
+            content={<UserDropdown onClick={signOutAccount} />}
+            interactive={true}
+            arrow={true}
+            animation="scale">
+            <div className="flex items-start flex-col gap-y-1 text-sm leading-none">
+              <span className="text-xs">Tài Khoản</span>
+              <span className="font-medium">{user.displayName}</span>
+            </div>
+          </Tippy>
         ) : (
           <Href to={routes.signin}>
             <div className="flex items-start flex-col gap-y-1 text-sm leading-none">

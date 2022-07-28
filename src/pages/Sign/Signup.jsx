@@ -30,7 +30,7 @@ const schema = yup
             "Mật khẩu phải tối thiểu 8 kí tự bao gồm 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt",
         }
       )
-      .required("Vui lòng nhập vào password"),
+      .required("Vui lòng nhập vào mật khẩu"),
   })
   .required();
 
@@ -45,7 +45,7 @@ const Signup = () => {
     formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
   } = useForm({
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: "onSubmit",
     defaultValues: {
       username: "",
       email: "",

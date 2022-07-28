@@ -12,7 +12,7 @@ import {
   useGetDataWithUserId,
   useGetParamsUrl,
   useLoading,
-  useToggle,
+  useToggle
 } from "../../hooks";
 import { CartSidebar } from "../../layouts/cart";
 import { Container } from "../../layouts/components/container";
@@ -43,7 +43,7 @@ const CheckOut = () => {
     if (!data) {
       return;
     } else {
-      const cloneOrders = [...data?.completed_orders, ...cart.listId];
+      const cloneOrders = [...data?.completed_orders, ...cart.orders];
       const newOrders = [...new Set(cloneOrders)];
       console.log(newOrders);
       await updateDataToFirestore(newOrders, "completed_orders");

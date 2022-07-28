@@ -67,18 +67,6 @@ const firebaseServices = () => {
     await signOut(auth);
   }
 
-  // async function getDataWithUserId(userId = "", collectionName) {
-  //   const q = query(
-  //     collection(db, collectionName),
-  //     where("userId", "==", true)
-  //   );
-  //   const querySnapshot = await getDocs(q);
-  //   querySnapshot.forEach((doc) => {
-  //     // doc.data() is never undefined for query doc snapshots
-  //     console.log(doc.id, " => ", doc.data());
-  //   });
-  // }
-
   async function updateDataToFirestore(data, field = "orders.items") {
     const docRef = doc(db, "cart", auth.currentUser.uid);
     try {

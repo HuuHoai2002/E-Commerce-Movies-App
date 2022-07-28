@@ -7,7 +7,9 @@ const Details = lazy(() => import("../pages/Details/ProductDetails"));
 const Search = lazy(() => import("../pages/Search/Search"));
 const Cart = lazy(() => import("../pages/Cart/Cart"));
 const CheckOut = lazy(() => import("../pages/CheckOut/CheckOut"));
-// const CheckOutSuccess = lazy(() => import("../pages/CheckOut/CheckOutSuccess"));
+const CompletedOrders = lazy(() =>
+  import("../pages/CompletedOrders/CompletedOrders")
+);
 const Signup = lazy(() => import("../pages/Sign/Signup"));
 const Signin = lazy(() => import("../pages/Sign/Signin"));
 const NotFound = lazy(() => import("../pages/NotFound/NotFound"));
@@ -57,6 +59,10 @@ const publicRoutes = [
   {
     path: "*",
     component: NotFound,
+  },
+  {
+    path: routes.completedOrders,
+    component: CompletedOrders,
   },
 ];
 

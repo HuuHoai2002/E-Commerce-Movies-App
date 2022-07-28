@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 // import { Button } from "../../components/button";
 import { Button } from "../../components/form/button";
-import { IPlay } from "../../components/icons";
 import { Image } from "../../components/image";
 import { QuantityInput } from "../../components/quantityInput";
 import { image_url_with_size } from "../../config/api/apiProducts";
@@ -9,7 +8,7 @@ import {
   useBackToPage,
   useFetchingProductDetails,
   useGetParamsUrl,
-  useLoading
+  useLoading,
 } from "../../hooks";
 import { Container } from "../../layouts/components/container";
 import { Flex } from "../../layouts/components/flex";
@@ -47,9 +46,6 @@ const ProductDetails = () => {
                     src={`${image_url_with_size}${data.poster_path}`}
                     className="rounded-none"
                   />
-                  <div className="opacity-0 absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 group-hover:opacity-100 transition-all">
-                    <IPlay fill="white" />
-                  </div>
                 </div>
               </View>
             </div>
@@ -68,19 +64,6 @@ const ProductDetails = () => {
                         Mua Hàng
                       </Button>
                     </div>
-                    {/* <Button
-                      className="!min-w-[300px] !min-h-[48px] !rounded hover:!opacity-80"
-                      title="Mua hàng"
-                      activeHover={true}
-                      onClick={() => handleClick(data)}
-                    /> */}
-                    {/* <Button
-                      className="!min-w-[200px] !min-h-[48px] !bg-transparent !rounded"
-                      title="Thêm vào giỏ hàng"
-                      activeHover={false}
-                      activeBorder={true}
-                      onClick={handleClick}
-                    /> */}
                   </div>
                 </div>
               </div>

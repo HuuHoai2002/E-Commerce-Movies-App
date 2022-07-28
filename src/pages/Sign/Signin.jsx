@@ -22,7 +22,7 @@ const schema = yup
     password: yup
       .string()
       .min(8, "Mật khẩu phải tối thiểu 8 ký tự")
-      .required("Vui lòng nhập vào password"),
+      .required("Vui lòng nhập vào mật khẩu"),
   })
   .required();
 
@@ -38,7 +38,7 @@ const Signin = () => {
     formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
   } = useForm({
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: "onSubmit",
     defaultValues: {
       email: "",
       password: "",

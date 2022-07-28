@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Image } from "../../components/image";
-import { showToast } from "../../utils";
 import { Grid } from "../components/grid";
 import { footerContent, footerInfo } from "./content";
 
@@ -10,9 +9,6 @@ const FooterStyles = styled.div`
 `;
 
 const Footer = () => {
-  const handleShowToast = () => {
-    showToast("Hiện chưa làm cái này , cảm ơn", false, true);
-  };
   return (
     <div className="footer">
       <FooterStyles>
@@ -22,8 +18,7 @@ const Footer = () => {
               {footerContent.map((item) => (
                 <div
                   className="flex items-center flex-col gap-y-3 justify-center cursor-pointer"
-                  key={item.id}
-                  onClick={handleShowToast}>
+                  key={item.id}>
                   <Image src={item.imageUrl} className="w-[130px] h-[88px]" />
                   <span className="font-medium text-ctext text-sm">
                     {item.content}

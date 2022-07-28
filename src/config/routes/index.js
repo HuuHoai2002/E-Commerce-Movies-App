@@ -2,11 +2,11 @@ export const routes = {
   home: "/",
   details: "details",
   user: "user",
-  signin: "signin",
+  signin: "/signin",
   signup: "signup",
   cart: "cart",
   search: "search",
   profile: "profile",
   checkout: "checkout/payment",
-  success: "checkout/payment/success",
+  completedOrders: "/checkout/completed-orders",
 };
